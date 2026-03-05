@@ -76,24 +76,32 @@
     /* ── Navbar ──────────────────────────────────────────────────── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(255,255,255,.92); backdrop-filter: blur(12px);
+      background: rgba(11,17,32,.85); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      transition: background .3s;
+    }
+    nav.scrolled {
+      background: rgba(255,255,255,.95);
       border-bottom: 1px solid var(--border);
     }
+    nav.scrolled .nav-logo { color: var(--primary); }
+    nav.scrolled .nav-links a { color: var(--slate); }
+    nav.scrolled .nav-login { color: var(--slate); }
     .nav-inner {
       display: flex; align-items: center; justify-content: space-between;
       height: 64px;
     }
     .nav-logo {
-      font-size: 22px; font-weight: 800; color: var(--primary);
+      font-size: 22px; font-weight: 800; color: #fff;
       text-decoration: none; letter-spacing: -0.5px;
     }
     .nav-logo span { color: var(--gold); }
     .nav-links { display: flex; gap: 28px; list-style: none; }
-    .nav-links a { color: var(--slate); text-decoration: none; font-size: 14px; font-weight: 500; transition: color .2s; }
-    .nav-links a:hover { color: var(--primary); }
+    .nav-links a { color: rgba(255,255,255,.7); text-decoration: none; font-size: 14px; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: #fff; }
     .nav-cta { display: flex; gap: 10px; align-items: center; }
-    .nav-login { color: var(--slate); text-decoration: none; font-weight: 500; font-size: 14px; transition: color .2s; }
-    .nav-login:hover { color: var(--primary); }
+    .nav-login { color: rgba(255,255,255,.7); text-decoration: none; font-weight: 500; font-size: 14px; transition: color .2s; }
+    .nav-login:hover { color: #fff; }
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
     .hamburger span { display: block; width: 22px; height: 2px; background: var(--slate); border-radius: 2px; transition: .3s; }
     .mobile-menu {
@@ -106,59 +114,134 @@
 
     /* ── Hero ────────────────────────────────────────────────────── */
     #hero {
-      padding-top: 100px;
-      background: linear-gradient(135deg, #EFF6FF 0%, #F0F9FF 50%, #FFF7ED 100%);
+      padding-top: 64px;
+      background: linear-gradient(160deg, #0B1120 0%, #0F1E35 55%, #0B1628 100%);
       overflow: hidden; position: relative;
     }
     #hero::before {
-      content: ''; position: absolute; top: -100px; right: -100px;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(14,165,233,.1) 0%, transparent 70%);
+      content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+      width: 900px; height: 700px;
+      background: radial-gradient(ellipse, rgba(14,165,233,.18) 0%, transparent 65%);
       pointer-events: none;
     }
-    .hero-inner {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
-      align-items: center; padding: 80px 0 100px;
+    #hero::after {
+      content: ''; position: absolute; bottom: -100px; right: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(245,158,11,.08) 0%, transparent 60%);
+      pointer-events: none;
     }
-    .hero-badge { margin-bottom: 20px; }
+    .hero-center {
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; padding: 72px 0 56px; position: relative; z-index: 1;
+    }
+    .hero-badge { margin-bottom: 24px; }
+    .hero-badge .badge {
+      background: rgba(14,165,233,.15); color: #7DD3FC;
+      border-color: rgba(14,165,233,.3);
+    }
+    .hero-wordmark {
+      font-size: clamp(72px, 13vw, 140px); font-weight: 800;
+      letter-spacing: -4px; line-height: 1;
+      background: linear-gradient(135deg, #fff 30%, #7DD3FC 70%, #38BDF8 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; margin-bottom: 24px;
+    }
     .hero-title {
-      font-size: clamp(32px, 5vw, 52px); font-weight: 800;
-      color: var(--dark); line-height: 1.15; margin-bottom: 20px;
+      font-size: clamp(20px, 3.2vw, 32px); font-weight: 700;
+      color: #F1F5F9; line-height: 1.3; margin-bottom: 16px;
+      max-width: 700px;
     }
-    .hero-title .accent { color: var(--primary); }
-    .hero-title .accent-gold { color: var(--gold-d); }
+    .hero-title .accent { color: #38BDF8; }
     .hero-sub {
-      font-size: 17px; color: var(--muted); margin-bottom: 36px; line-height: 1.6;
+      font-size: 17px; color: #94A3B8; margin-bottom: 36px;
+      line-height: 1.7; max-width: 560px;
     }
-    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+    .btn-hero-primary {
+      background: var(--primary); color: #fff;
+      padding: 14px 32px; border-radius: 12px; font-size: 16px; font-weight: 700;
+      box-shadow: 0 0 32px rgba(14,165,233,.45);
+      transition: all .2s;
+    }
+    .btn-hero-primary:hover { background: var(--primary-d); transform: translateY(-2px); box-shadow: 0 0 48px rgba(14,165,233,.6); }
+    .btn-hero-outline {
+      background: rgba(255,255,255,.07); color: #CBD5E1;
+      border: 1.5px solid rgba(255,255,255,.15);
+      padding: 14px 28px; border-radius: 12px; font-size: 16px; font-weight: 600;
+      transition: all .2s;
+    }
+    .btn-hero-outline:hover { background: rgba(255,255,255,.12); color: #fff; }
     .hero-stats {
-      display: flex; gap: 32px; margin-top: 44px; padding-top: 32px;
-      border-top: 1px solid var(--border);
+      display: flex; gap: 40px; margin-top: 44px; padding-top: 36px;
+      border-top: 1px solid rgba(255,255,255,.08); justify-content: center;
     }
-    .hero-stat-val { font-size: 26px; font-weight: 800; color: var(--dark); }
-    .hero-stat-label { font-size: 13px; color: var(--muted); margin-top: 2px; }
-    .hero-visual {
-      display: flex; flex-direction: column; gap: 12px;
-      filter: drop-shadow(0 20px 60px rgba(14,165,233,.15));
+    .hero-stat-val { font-size: 24px; font-weight: 800; color: #F1F5F9; }
+    .hero-stat-label { font-size: 12px; color: #64748B; margin-top: 3px; }
+
+    /* ── Live mockup row ─────────────────────────────────────────── */
+    .hero-mockups {
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+      padding: 0 0 72px; max-width: 1100px; margin: 0 auto;
     }
     .mockup-card {
-      background: white; border-radius: var(--radius);
-      padding: 16px 20px; border: 1px solid var(--border);
-      box-shadow: var(--card-shadow);
+      background: rgba(255,255,255,.04); border-radius: var(--radius);
+      padding: 18px 20px; border: 1px solid rgba(255,255,255,.1);
+      box-shadow: 0 8px 40px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.07);
+      backdrop-filter: blur(12px);
+      animation: floatCard 6s ease-in-out infinite;
+    }
+    .mockup-card:nth-child(2) { animation-delay: -1.5s; }
+    .mockup-card:nth-child(3) { animation-delay: -3s; }
+    .mockup-card:nth-child(4) { animation-delay: -4.5s; }
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
     }
     .mockup-row { display: flex; align-items: center; justify-content: space-between; }
-    .mockup-label { font-size: 12px; color: var(--muted); font-weight: 500; }
-    .mockup-val { font-size: 20px; font-weight: 800; color: var(--dark); }
-    .mockup-badge { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
-    .badge-green { background: rgba(34,197,94,.12); color: #16A34A; }
-    .badge-red { background: rgba(239,68,68,.12); color: #DC2626; }
-    .badge-blue { background: rgba(14,165,233,.12); color: var(--primary); }
-    .badge-orange { background: rgba(245,158,11,.12); color: var(--gold-d); }
-    .progress-bar { height: 6px; border-radius: 3px; background: var(--border); overflow: hidden; margin-top: 8px; }
-    .progress-fill { height: 100%; border-radius: 3px; background: var(--primary); }
-    .mockup-list { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
-    .mockup-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--slate); }
-    .mockup-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .mockup-label { font-size: 11px; color: #64748B; font-weight: 500; letter-spacing: .3px; text-transform: uppercase; }
+    .mockup-val { font-size: 22px; font-weight: 800; color: #F1F5F9; margin-top: 6px; }
+    .mockup-val-sm { font-size: 16px; font-weight: 700; color: #F1F5F9; margin-top: 4px; }
+    .mockup-badge { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; }
+    .badge-green { background: rgba(34,197,94,.2); color: #4ADE80; }
+    .badge-red { background: rgba(239,68,68,.2); color: #F87171; }
+    .badge-blue { background: rgba(14,165,233,.2); color: #38BDF8; }
+    .badge-orange { background: rgba(245,158,11,.2); color: #FCD34D; }
+    .badge-pulse { animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:.5; } }
+    .progress-bar { height: 5px; border-radius: 3px; background: rgba(255,255,255,.1); overflow: hidden; margin-top: 10px; }
+    .progress-fill { height: 100%; border-radius: 3px; background: var(--primary); transition: width 1s ease; }
+    .mockup-list { display: flex; flex-direction: column; gap: 7px; margin-top: 12px; }
+    .mockup-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #94A3B8; }
+    .mockup-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .mockup-divider { border: none; border-top: 1px solid rgba(255,255,255,.07); margin: 12px 0; }
+    .live-dot {
+      display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+      background: #4ADE80; margin-right: 5px;
+      box-shadow: 0 0 8px #4ADE80;
+      animation: livePulse 1.5s ease-in-out infinite;
+    }
+    @keyframes livePulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.6; transform:scale(1.4); } }
+    .tx-feed { display: flex; flex-direction: column; gap: 6px; margin-top: 10px; max-height: 110px; overflow: hidden; }
+    .tx-row {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 12px; padding: 5px 8px; border-radius: 7px;
+      background: rgba(255,255,255,.04); color: #94A3B8;
+      animation: txSlide .4s ease;
+    }
+    @keyframes txSlide { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:none; } }
+    .tx-amount-in  { color: #4ADE80; font-weight: 700; }
+    .tx-amount-out { color: #F87171; font-weight: 700; }
+
+    /* responsive hero */
+    @media (max-width: 960px) {
+      .hero-mockups { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .hero-wordmark { letter-spacing: -2px; }
+      .hero-mockups { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .hero-stats { gap: 24px; flex-wrap: wrap; }
+    }
 
     /* ── Logos (trust) ───────────────────────────────────────────── */
     #trust { padding: 40px 0; border-bottom: 1px solid var(--border); }
@@ -359,102 +442,129 @@
 <!-- ── Hero ────────────────────────────────────────────────────────────────── -->
 <section id="hero">
   <div class="container">
-    <div class="hero-inner">
-      <div>
-        <div class="hero-badge reveal">
-          <span class="badge">🇰🇿 Для Казахстана · МРП 4 205 ₸ · Налоги 2026</span>
-        </div>
-        <h1 class="hero-title reveal">
-          Учёт для ИП —<br/>
-          <span class="accent">проще 1С</span>,<br/>
-          умнее Excel
-        </h1>
-        <p class="hero-sub reveal">
-          Доходы, расходы, счета и налоги — в одном приложении прямо в браузере.
-          Точный расчёт ОПВ, СО, ВОСМС и 910 формы по ставкам 2026 года.
-        </p>
-        <div class="hero-actions reveal">
-          <a href="https://app.esep.kz/auth" class="btn btn-primary">
-            ✨ Начать бесплатно
-          </a>
-          <a href="#features" class="btn btn-outline">
-            Смотреть функции
-          </a>
-        </div>
-        <div class="hero-stats reveal">
-          <div>
-            <div class="hero-stat-val">4%</div>
-            <div class="hero-stat-label">Ставка упрощёнки</div>
-          </div>
-          <div>
-            <div class="hero-stat-val">24 038</div>
-            <div class="hero-stat-label">МРП — лимит полугодия</div>
-          </div>
-          <div>
-            <div class="hero-stat-val">25-е</div>
-            <div class="hero-stat-label">Дедлайн соцплатежей</div>
-          </div>
-        </div>
+    <div class="hero-center">
+      <div class="hero-badge reveal">
+        <span class="badge">🇰🇿 Казахстан · МРП 4 205 ₸ · Ставки 2026</span>
       </div>
-
-      <!-- Visual mockup -->
-      <div class="hero-visual reveal">
-        <div class="mockup-card">
-          <div class="mockup-row">
-            <div>
-              <div class="mockup-label">Доход за март</div>
-              <div class="mockup-val">1 240 000 ₸</div>
-            </div>
-            <span class="mockup-badge badge-green">+23%</span>
-          </div>
-          <div class="progress-bar" style="margin-top:14px;">
-            <div class="progress-fill" style="width:58%;"></div>
-          </div>
-          <div style="font-size:12px;color:var(--muted);margin-top:6px;">58% лимита упрощёнки использовано</div>
+      <div class="hero-wordmark reveal">ESEP</div>
+      <h1 class="hero-title reveal">
+        Штрафы, декларации, налоги —<br/>
+        <span class="accent">всё под контролем</span>
+      </h1>
+      <p class="hero-sub reveal">
+        Автоматический расчёт ОПВ, СО, ВОСМС и 910 формы. Напоминания за 3 дня до дедлайна.
+        Для ИП, бухгалтеров и малого бизнеса Казахстана.
+      </p>
+      <div class="hero-actions reveal">
+        <a href="https://app.esep.kz/auth" class="btn btn-hero-primary">✨ Начать бесплатно</a>
+        <a href="#features" class="btn btn-hero-outline">Смотреть функции</a>
+      </div>
+      <div class="hero-stats reveal">
+        <div>
+          <div class="hero-stat-val">1.8 млн</div>
+          <div class="hero-stat-label">ИП в Казахстане</div>
         </div>
-        <div class="mockup-card">
-          <div class="mockup-label" style="margin-bottom:10px;">Соцплатежи до 25 марта</div>
-          <div class="mockup-list">
-            <div class="mockup-item">
-              <div class="mockup-dot" style="background:var(--primary)"></div>
-              ОПВ — 8 500 ₸
-            </div>
-            <div class="mockup-item">
-              <div class="mockup-dot" style="background:var(--income)"></div>
-              СО — 4 250 ₸
-            </div>
-            <div class="mockup-item">
-              <div class="mockup-dot" style="background:var(--gold)"></div>
-              ВОСМС — 5 950 ₸
-            </div>
-          </div>
-          <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
-            <span style="font-size:14px;font-weight:700;color:var(--dark);">Итого: 24 840 ₸</span>
-            <span class="mockup-badge badge-orange">3 дня</span>
-          </div>
+        <div>
+          <div class="hero-stat-val">4%</div>
+          <div class="hero-stat-label">Ставка упрощёнки</div>
         </div>
-        <div class="mockup-card">
-          <div class="mockup-row">
-            <div class="mockup-label">Последние операции</div>
-            <span style="font-size:12px;color:var(--primary);font-weight:600;">Все →</span>
-          </div>
-          <div class="mockup-list" style="margin-top:10px;">
-            <div class="mockup-item" style="justify-content:space-between;">
-              <span>Оплата от ТОО Стройком</span>
-              <span style="color:var(--income);font-weight:600;">+320 000 ₸</span>
-            </div>
-            <div class="mockup-item" style="justify-content:space-between;">
-              <span>Офис — аренда</span>
-              <span style="color:var(--expense);font-weight:600;">−80 000 ₸</span>
-            </div>
-            <div class="mockup-item" style="justify-content:space-between;">
-              <span>Счёт СЧ-2026-018</span>
-              <span class="mockup-badge badge-blue" style="font-size:11px;">Отправлен</span>
-            </div>
-          </div>
+        <div>
+          <div class="hero-stat-val">25-е</div>
+          <div class="hero-stat-label">Дедлайн соцплатежей</div>
+        </div>
+        <div>
+          <div class="hero-stat-val">0 ₸</div>
+          <div class="hero-stat-label">Штрафов с Esep</div>
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- Live animated mockups -->
+  <div class="hero-mockups">
+
+    <!-- Card 1: Live income counter -->
+    <div class="mockup-card">
+      <div class="mockup-row">
+        <div class="mockup-label">Доход за март</div>
+        <span class="live-dot"></span>
+      </div>
+      <div class="mockup-val" id="incomeCounter">1 240 000 ₸</div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="limitBar" style="width:58%;"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:6px;">
+        <span style="font-size:11px;color:#64748B;">Лимит упрощёнки</span>
+        <span style="font-size:11px;color:#7DD3FC;font-weight:600;" id="limitPct">58%</span>
+      </div>
+    </div>
+
+    <!-- Card 2: Tax deadline alert -->
+    <div class="mockup-card">
+      <div class="mockup-row">
+        <div class="mockup-label">Соцплатежи</div>
+        <span class="mockup-badge badge-orange badge-pulse" id="deadlineBadge">3 дня</span>
+      </div>
+      <hr class="mockup-divider"/>
+      <div class="mockup-list">
+        <div class="mockup-item">
+          <div class="mockup-dot" style="background:#38BDF8"></div>
+          <span style="flex:1">ОПВ</span><span style="color:#F1F5F9;font-weight:600;">8 500 ₸</span>
+        </div>
+        <div class="mockup-item">
+          <div class="mockup-dot" style="background:#4ADE80"></div>
+          <span style="flex:1">СО</span><span style="color:#F1F5F9;font-weight:600;">4 250 ₸</span>
+        </div>
+        <div class="mockup-item">
+          <div class="mockup-dot" style="background:#FCD34D"></div>
+          <span style="flex:1">ВОСМС</span><span style="color:#F1F5F9;font-weight:600;">5 950 ₸</span>
+        </div>
+      </div>
+      <hr class="mockup-divider"/>
+      <div class="mockup-row">
+        <span style="font-size:13px;font-weight:700;color:#F1F5F9;">Итого: 18 700 ₸</span>
+        <span class="mockup-badge badge-blue">до 25 марта</span>
+      </div>
+    </div>
+
+    <!-- Card 3: Live transaction feed -->
+    <div class="mockup-card">
+      <div class="mockup-row">
+        <div class="mockup-label">Операции</div>
+        <span style="font-size:11px;color:#4ADE80;font-weight:600;"><span class="live-dot"></span>Live</span>
+      </div>
+      <div class="tx-feed" id="txFeed">
+        <div class="tx-row"><span>ТОО Стройком</span><span class="tx-amount-in">+320 000 ₸</span></div>
+        <div class="tx-row"><span>Аренда офиса</span><span class="tx-amount-out">−80 000 ₸</span></div>
+        <div class="tx-row"><span>Касса Дидар ИП</span><span class="tx-amount-in">+95 000 ₸</span></div>
+      </div>
+    </div>
+
+    <!-- Card 4: 910 form status -->
+    <div class="mockup-card">
+      <div class="mockup-label">910 Декларация</div>
+      <div class="mockup-row" style="margin-top:8px;">
+        <span class="mockup-badge badge-blue">I полугодие 2026</span>
+      </div>
+      <hr class="mockup-divider"/>
+      <div class="mockup-list">
+        <div class="mockup-item" style="justify-content:space-between;">
+          <span>Доход</span><span style="color:#F1F5F9;font-weight:600;" id="form910income">1 240 000 ₸</span>
+        </div>
+        <div class="mockup-item" style="justify-content:space-between;">
+          <span>Налог 4%</span><span style="color:#FCD34D;font-weight:600;" id="form910tax">49 600 ₸</span>
+        </div>
+        <div class="mockup-item" style="justify-content:space-between;">
+          <span>ИПН</span><span style="color:#F1F5F9;font-weight:600;">24 800 ₸</span>
+        </div>
+        <div class="mockup-item" style="justify-content:space-between;">
+          <span>Соцналог</span><span style="color:#F1F5F9;font-weight:600;">24 800 ₸</span>
+        </div>
+      </div>
+      <hr class="mockup-divider"/>
+      <div style="font-size:11px;color:#64748B;">Срок подачи: 15 августа 2026</div>
+    </div>
+
   </div>
 </section>
 
@@ -966,8 +1076,69 @@
   // ── Active nav on scroll
   window.addEventListener('scroll', () => {
     const nav = document.querySelector('nav');
-    nav.style.boxShadow = window.scrollY > 20 ? '0 2px 20px rgba(0,0,0,.08)' : 'none';
+    if (window.scrollY > 80) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
   });
+
+  // ── Live hero animations ──────────────────────────────────────────────────
+  // 1. Income counter ticking up
+  let income = 1240000;
+  const incomeEl  = document.getElementById('incomeCounter');
+  const limitEl   = document.getElementById('limitPct');
+  const limitBar  = document.getElementById('limitBar');
+  const HALF_LIMIT = 101_000_000; // 24038 MRP * 4205
+
+  function fmtMoney(n) {
+    return n.toLocaleString('ru-RU') + ' ₸';
+  }
+  setInterval(() => {
+    income += Math.floor(Math.random() * 45000 + 5000);
+    const pct = Math.min(99, Math.round(income / HALF_LIMIT * 100));
+    if (incomeEl) incomeEl.textContent = fmtMoney(income);
+    if (limitEl)  limitEl.textContent  = pct + '%';
+    if (limitBar) limitBar.style.width = pct + '%';
+    // Also update 910 form card
+    const f910i = document.getElementById('form910income');
+    const f910t = document.getElementById('form910tax');
+    if (f910i) f910i.textContent = fmtMoney(income);
+    if (f910t) f910t.textContent = fmtMoney(Math.round(income * 0.04));
+  }, 3200);
+
+  // 2. Live transaction feed
+  const txItems = [
+    { name: 'ТОО Стройком',     amount: +320000 },
+    { name: 'Аренда офиса',     amount: -80000  },
+    { name: 'Касса Дидар ИП',   amount: +95000  },
+    { name: 'Зарплата сотр.',   amount: -150000 },
+    { name: 'ИП Ахметов',       amount: +210000 },
+    { name: 'Интернет Beeline',  amount: -9500   },
+    { name: 'ТОО АстанаТрейд',  amount: +540000 },
+    { name: 'Коммунальные',     amount: -32000  },
+    { name: 'Оплата от Айгерим',amount: +75000  },
+  ];
+  let txIdx = 3;
+  const feedEl = document.getElementById('txFeed');
+  setInterval(() => {
+    if (!feedEl) return;
+    const tx = txItems[txIdx % txItems.length]; txIdx++;
+    const row = document.createElement('div');
+    row.className = 'tx-row';
+    const isIn = tx.amount > 0;
+    row.innerHTML = `<span>${tx.name}</span><span class="${isIn ? 'tx-amount-in' : 'tx-amount-out'}">${isIn ? '+' : '−'}${Math.abs(tx.amount).toLocaleString('ru-RU')} ₸</span>`;
+    feedEl.insertBefore(row, feedEl.firstChild);
+    if (feedEl.children.length > 4) feedEl.removeChild(feedEl.lastChild);
+  }, 2800);
+
+  // 3. Deadline badge countdown
+  const deadlineEl = document.getElementById('deadlineBadge');
+  let daysLeft = 3;
+  setInterval(() => {
+    if (!deadlineEl) return;
+    daysLeft = daysLeft > 1 ? daysLeft - 1 : 5;
+    deadlineEl.textContent = daysLeft + (daysLeft === 1 ? ' день' : ' дня');
+    deadlineEl.className = 'mockup-badge badge-pulse ' +
+      (daysLeft <= 2 ? 'badge-red' : daysLeft <= 3 ? 'badge-orange' : 'badge-blue');
+  }, 5000);
 </script>
 </body>
 </html>
