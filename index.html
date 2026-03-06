@@ -9,6 +9,7 @@
   <meta property="og:title" content="Esep — Учёт для ИП Казахстана" />
   <meta property="og:description" content="Проще 1С, умнее Excel. Счета, налоги, доходы — всё в одном приложении." />
   <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230EA5E9'/%3E%3Ctext x='16' y='23' font-family='Inter%2CArial%2Csans-serif' font-size='21' font-weight='800' fill='white' text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -178,68 +179,116 @@
     .hero-stat-val { font-size: 24px; font-weight: 800; color: #F1F5F9; }
     .hero-stat-label { font-size: 12px; color: #64748B; margin-top: 3px; }
 
-    /* ── Live mockup row ─────────────────────────────────────────── */
-    .hero-mockups {
+    /* ── Device Mockups (Hero) ───────────────────────────────────── */
+    .hero-mockups-dual {
       position: relative; z-index: 1;
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
-      padding: 0 0 72px; max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 290px;
+      gap: 20px; padding: 0 24px 80px;
+      max-width: 1100px; margin: 0 auto; align-items: start;
     }
-    .mockup-card {
-      background: rgba(255,255,255,.04); border-radius: var(--radius);
-      padding: 18px 20px; border: 1px solid rgba(255,255,255,.1);
-      box-shadow: 0 8px 40px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.07);
-      backdrop-filter: blur(12px);
-      animation: floatCard 6s ease-in-out infinite;
+    @keyframes floatDevice { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    .device-browser {
+      background: rgba(255,255,255,.03); border-radius: 14px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,.13);
+      box-shadow: 0 24px 64px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.04);
+      animation: floatDevice 7s ease-in-out infinite;
     }
-    .mockup-card:nth-child(2) { animation-delay: -1.5s; }
-    .mockup-card:nth-child(3) { animation-delay: -3s; }
-    .mockup-card:nth-child(4) { animation-delay: -4.5s; }
-    @keyframes floatCard {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
+    .browser-bar {
+      display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+      background: rgba(255,255,255,.05); border-bottom: 1px solid rgba(255,255,255,.08);
     }
-    .mockup-row { display: flex; align-items: center; justify-content: space-between; }
-    .mockup-label { font-size: 11px; color: #64748B; font-weight: 500; letter-spacing: .3px; text-transform: uppercase; }
-    .mockup-val { font-size: 22px; font-weight: 800; color: #F1F5F9; margin-top: 6px; }
-    .mockup-val-sm { font-size: 16px; font-weight: 700; color: #F1F5F9; margin-top: 4px; }
+    .browser-dots { display: flex; gap: 5px; }
+    .browser-dots span { width: 10px; height: 10px; border-radius: 50%; }
+    .browser-dots span:nth-child(1) { background: #FF5F57; }
+    .browser-dots span:nth-child(2) { background: #FFBD2E; }
+    .browser-dots span:nth-child(3) { background: #28CA41; }
+    .browser-url {
+      flex: 1; background: rgba(255,255,255,.07); border-radius: 6px;
+      padding: 4px 12px; font-size: 11px; color: #64748B; font-family: monospace;
+    }
+    .browser-body { display: flex; }
+    .dash-sidebar {
+      width: 44px; padding: 12px 0;
+      background: rgba(255,255,255,.02); border-right: 1px solid rgba(255,255,255,.06);
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+    }
+    .dash-nav-item {
+      width: 30px; height: 30px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; opacity: .4; cursor: pointer;
+    }
+    .dash-nav-item.active { background: rgba(14,165,233,.2); opacity: 1; }
+    .dash-main { flex: 1; padding: 14px; }
+    .dash-row-title {
+      font-size: 12px; font-weight: 700; color: #F1F5F9;
+      margin-bottom: 10px; display: flex; align-items: center; gap: 6px;
+    }
+    .dash-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+    .dash-card {
+      background: rgba(255,255,255,.04); border-radius: 9px; padding: 11px;
+      border: 1px solid rgba(255,255,255,.07);
+    }
+    .dash-card-lbl { font-size: 10px; color: #64748B; letter-spacing: .3px; margin-bottom: 4px; }
+    .dash-card-num { font-size: 15px; font-weight: 800; color: #F1F5F9; }
+    .dash-tx-hd {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 11px; font-weight: 600; color: #94A3B8; margin-bottom: 7px;
+    }
+    .device-phone {
+      background: rgba(255,255,255,.03); border-radius: 28px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,.13);
+      box-shadow: 0 24px 64px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.04);
+      animation: floatDevice 7s ease-in-out -2.5s infinite;
+    }
+    .phone-notch-bar {
+      height: 26px; background: rgba(0,0,0,.25); display: flex; align-items: center;
+      justify-content: center; border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .phone-notch { width: 76px; height: 14px; background: rgba(0,0,0,.5); border-radius: 0 0 10px 10px; }
+    .phone-screen { padding: 12px; }
+    .phone-card {
+      background: rgba(255,255,255,.05); border-radius: 10px; padding: 10px;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .phone-card-warn { border-color: rgba(245,158,11,.3); background: rgba(245,158,11,.06); }
+    .phone-row { display: flex; justify-content: space-between; font-size: 11px; color: #94A3B8; padding: 2px 0; }
+    .phone-row span:last-child { color: #F1F5F9; font-weight: 600; }
+    /* shared dark-bg UI helpers */
     .mockup-badge { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; }
-    .badge-green { background: rgba(34,197,94,.2); color: #4ADE80; }
-    .badge-red { background: rgba(239,68,68,.2); color: #F87171; }
-    .badge-blue { background: rgba(14,165,233,.2); color: #38BDF8; }
+    .badge-green  { background: rgba(34,197,94,.2);  color: #4ADE80; }
+    .badge-red    { background: rgba(239,68,68,.2);  color: #F87171; }
+    .badge-blue   { background: rgba(14,165,233,.2); color: #38BDF8; }
     .badge-orange { background: rgba(245,158,11,.2); color: #FCD34D; }
-    .badge-pulse { animation: pulse 2s ease-in-out infinite; }
-    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:.5; } }
-    .progress-bar { height: 5px; border-radius: 3px; background: rgba(255,255,255,.1); overflow: hidden; margin-top: 10px; }
+    .badge-pulse  { animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+    .progress-bar  { height: 5px; border-radius: 3px; background: rgba(255,255,255,.1); overflow: hidden; margin-top: 10px; }
     .progress-fill { height: 100%; border-radius: 3px; background: var(--primary); transition: width 1s ease; }
-    .mockup-list { display: flex; flex-direction: column; gap: 7px; margin-top: 12px; }
-    .mockup-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #94A3B8; }
-    .mockup-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-    .mockup-divider { border: none; border-top: 1px solid rgba(255,255,255,.07); margin: 12px 0; }
+    .mockup-divider { border: none; border-top: 1px solid rgba(255,255,255,.07); margin: 10px 0; }
     .live-dot {
       display: inline-block; width: 7px; height: 7px; border-radius: 50%;
-      background: #4ADE80; margin-right: 5px;
-      box-shadow: 0 0 8px #4ADE80;
+      background: #4ADE80; margin-right: 5px; box-shadow: 0 0 8px #4ADE80;
       animation: livePulse 1.5s ease-in-out infinite;
     }
-    @keyframes livePulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.6; transform:scale(1.4); } }
-    .tx-feed { display: flex; flex-direction: column; gap: 6px; margin-top: 10px; max-height: 110px; overflow: hidden; }
+    @keyframes livePulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(1.4)} }
+    .tx-feed { display: flex; flex-direction: column; gap: 5px; max-height: 100px; overflow: hidden; }
     .tx-row {
       display: flex; justify-content: space-between; align-items: center;
-      font-size: 12px; padding: 5px 8px; border-radius: 7px;
+      font-size: 11px; padding: 4px 7px; border-radius: 6px;
       background: rgba(255,255,255,.04); color: #94A3B8;
       animation: txSlide .4s ease;
     }
-    @keyframes txSlide { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:none; } }
+    @keyframes txSlide { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:none} }
     .tx-amount-in  { color: #4ADE80; font-weight: 700; }
     .tx-amount-out { color: #F87171; font-weight: 700; }
 
-    /* responsive hero */
-    @media (max-width: 960px) {
-      .hero-mockups { grid-template-columns: repeat(2, 1fr); }
+    /* responsive hero mockups */
+    @media (max-width: 900px) {
+      .hero-mockups-dual { grid-template-columns: 1fr; }
+      .device-phone { max-width: 320px; margin: 0 auto; }
     }
     @media (max-width: 600px) {
       .hero-wordmark { letter-spacing: -2px; }
-      .hero-mockups { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .hero-mockups-dual { padding: 0 12px 56px; gap: 12px; }
       .hero-stats { gap: 24px; flex-wrap: wrap; }
     }
 
@@ -268,30 +317,75 @@
     .whom-feat { font-size: 13px; color: var(--slate); display: flex; gap: 6px; }
     .whom-feat::before { content: '✓'; color: var(--income); font-weight: 700; }
 
-    /* ── Features ────────────────────────────────────────────────── */
-    .tabs { display: flex; gap: 8px; margin-bottom: 40px; }
-    .tab-btn {
-      padding: 10px 22px; border-radius: 30px; font-size: 14px; font-weight: 600;
-      border: 1.5px solid var(--border); background: white; cursor: pointer;
-      transition: all .2s; color: var(--muted);
+    /* ── Features (Popup Showcase) ───────────────────────────────── */
+    .popup-showcase {
+      display: grid; grid-template-columns: 240px 1fr; gap: 48px; align-items: center;
     }
-    .tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
-    .feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .feat-card {
-      padding: 24px; border-radius: var(--radius);
-      background: white; border: 1px solid var(--border);
-      box-shadow: var(--card-shadow); transition: transform .2s;
+    .popup-phone {
+      background: var(--white); border-radius: 28px; overflow: hidden;
+      border: 2px solid var(--border); box-shadow: 0 20px 60px rgba(15,23,42,.1);
     }
-    .feat-card:hover { transform: translateY(-3px); }
-    .feat-icon {
-      width: 44px; height: 44px; border-radius: 11px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 20px; margin-bottom: 14px;
+    .pp-notch-bar {
+      height: 24px; background: var(--dark); display: flex;
+      align-items: center; justify-content: center;
     }
-    .feat-title { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
-    .feat-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .pp-notch { width: 72px; height: 14px; background: rgba(0,0,0,.7); border-radius: 0 0 10px 10px; }
+    .pp-screen { padding: 14px; background: var(--surface); }
+    .pp-app-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .pp-metric-card {
+      background: var(--white); border-radius: 10px; padding: 12px;
+      border: 1px solid var(--border); margin-bottom: 8px; box-shadow: var(--card-shadow);
+    }
+    .pp-invoice {
+      background: var(--white); border-radius: 10px; padding: 10px;
+      border: 1px solid var(--border); margin-bottom: 8px; box-shadow: var(--card-shadow);
+    }
+    .pp-deadlines {
+      background: var(--white); border-radius: 10px; padding: 10px;
+      border: 1px solid var(--border); box-shadow: var(--card-shadow);
+    }
+    .pp-dl-item {
+      display: flex; justify-content: space-between;
+      font-size: 11px; color: var(--muted); padding: 3px 0;
+    }
+    .pp-prog { height: 4px; border-radius: 2px; background: var(--border); overflow: hidden; margin-top: 6px; }
+    .pp-prog-fill { height: 100%; border-radius: 2px; background: var(--primary); width: 62%; }
+    .popup-area { position: relative; min-height: 280px; }
+    .popup-card {
+      background: var(--white); border-radius: 20px; padding: 28px 32px;
+      border: 1.5px solid var(--border); box-shadow: 0 12px 48px rgba(15,23,42,.1);
+      position: absolute; inset: 0;
+      opacity: 0; transform: translateY(14px) scale(.97);
+      transition: opacity .45s ease, transform .45s ease;
+      cursor: pointer; user-select: none;
+    }
+    .popup-card.active { opacity: 1; transform: none; z-index: 2; }
+    .popup-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 18px; }
+    .popup-icon {
+      width: 58px; height: 58px; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center; font-size: 30px; flex-shrink: 0;
+    }
+    .popup-card-meta { text-align: right; }
+    .popup-tag {
+      display: inline-block; font-size: 11px; font-weight: 700;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--muted); border-radius: 20px; padding: 3px 10px;
+    }
+    .popup-card-num { font-size: 11px; color: var(--muted); margin-top: 5px; display: block; }
+    .popup-card-title { font-size: 22px; font-weight: 800; color: var(--dark); margin-bottom: 10px; line-height: 1.25; }
+    .popup-card-desc { font-size: 15px; color: var(--muted); line-height: 1.7; }
+    .popup-hint { font-size: 12px; color: var(--border); margin-top: 20px; text-align: center; }
+    .popup-dots { display: flex; gap: 7px; justify-content: center; margin-top: 28px; }
+    .popup-dot-item {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--border); cursor: pointer; transition: all .3s;
+    }
+    .popup-dot-item.active { background: var(--primary); width: 24px; border-radius: 4px; }
+    @media (max-width: 860px) {
+      .popup-showcase { grid-template-columns: 1fr; }
+      .popup-phone { max-width: 240px; margin: 0 auto; }
+      .popup-area { min-height: 340px; }
+    }
 
     /* ── Comparison ──────────────────────────────────────────────── */
     .compare-table { width: 100%; border-collapse: collapse; border-radius: var(--radius); overflow: hidden; box-shadow: var(--card-shadow); }
@@ -480,89 +574,95 @@
     </div>
   </div>
 
-  <!-- Live animated mockups -->
-  <div class="hero-mockups">
+  <!-- Live animated mockups: desktop browser + phone -->
+  <div class="hero-mockups-dual">
 
-    <!-- Card 1: Live income counter -->
-    <div class="mockup-card">
-      <div class="mockup-row">
-        <div class="mockup-label">Доход за март</div>
-        <span class="live-dot"></span>
+    <!-- Desktop browser frame -->
+    <div class="device-browser">
+      <div class="browser-bar">
+        <div class="browser-dots">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="browser-url">app.esep.kz / dashboard</div>
       </div>
-      <div class="mockup-val" id="incomeCounter">1 240 000 ₸</div>
-      <div class="progress-bar">
-        <div class="progress-fill" id="limitBar" style="width:58%;"></div>
-      </div>
-      <div style="display:flex;justify-content:space-between;margin-top:6px;">
-        <span style="font-size:11px;color:#64748B;">Лимит упрощёнки</span>
-        <span style="font-size:11px;color:#7DD3FC;font-weight:600;" id="limitPct">58%</span>
+      <div class="browser-body">
+        <div class="dash-sidebar">
+          <div class="dash-nav-item active">📊</div>
+          <div class="dash-nav-item">📄</div>
+          <div class="dash-nav-item">👥</div>
+          <div class="dash-nav-item">⚙️</div>
+        </div>
+        <div class="dash-main">
+          <div class="dash-row-title"><span class="live-dot"></span>Дашборд · Март 2026</div>
+          <div class="dash-cards">
+            <div class="dash-card">
+              <div class="dash-card-lbl">Доход за март</div>
+              <div class="dash-card-num" id="incomeCounter">1 240 000 ₸</div>
+              <div class="progress-bar" style="margin-top:8px;"><div class="progress-fill" id="limitBar" style="width:58%;"></div></div>
+              <div style="display:flex;justify-content:space-between;margin-top:5px;">
+                <span style="font-size:10px;color:#64748B;">Лимит</span>
+                <span style="font-size:10px;color:#7DD3FC;font-weight:600;" id="limitPct">58%</span>
+              </div>
+            </div>
+            <div class="dash-card">
+              <div class="dash-card-lbl">Соцплатежи · срок</div>
+              <div class="dash-card-num" style="font-size:13px;margin-bottom:8px;">до 25 марта</div>
+              <div style="display:flex;flex-direction:column;gap:4px;">
+                <div style="display:flex;justify-content:space-between;font-size:10px;color:#94A3B8;"><span>ОПВ</span><span style="color:#F1F5F9;font-weight:600;">8 500 ₸</span></div>
+                <div style="display:flex;justify-content:space-between;font-size:10px;color:#94A3B8;"><span>СО</span><span style="color:#F1F5F9;font-weight:600;">4 250 ₸</span></div>
+                <div style="display:flex;justify-content:space-between;font-size:10px;color:#94A3B8;"><span>ВОСМС</span><span style="color:#F1F5F9;font-weight:600;">5 950 ₸</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="dash-tx-hd">
+            <span>Операции</span>
+            <span class="mockup-badge badge-blue">Live</span>
+          </div>
+          <div class="tx-feed" id="txFeed">
+            <div class="tx-row"><span>ТОО Стройком</span><span class="tx-amount-in">+320 000 ₸</span></div>
+            <div class="tx-row"><span>Аренда офиса</span><span class="tx-amount-out">−80 000 ₸</span></div>
+            <div class="tx-row"><span>Касса Дидар ИП</span><span class="tx-amount-in">+95 000 ₸</span></div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Card 2: Tax deadline alert -->
-    <div class="mockup-card">
-      <div class="mockup-row">
-        <div class="mockup-label">Соцплатежи</div>
-        <span class="mockup-badge badge-orange badge-pulse" id="deadlineBadge">3 дня</span>
-      </div>
-      <hr class="mockup-divider"/>
-      <div class="mockup-list">
-        <div class="mockup-item">
-          <div class="mockup-dot" style="background:#38BDF8"></div>
-          <span style="flex:1">ОПВ</span><span style="color:#F1F5F9;font-weight:600;">8 500 ₸</span>
+    <!-- Phone frame -->
+    <div class="device-phone">
+      <div class="phone-notch-bar"><div class="phone-notch"></div></div>
+      <div class="phone-screen">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+          <span style="font-size:14px;font-weight:800;color:#F1F5F9;">Esep</span>
+          <span class="live-dot"></span>
         </div>
-        <div class="mockup-item">
-          <div class="mockup-dot" style="background:#4ADE80"></div>
-          <span style="flex:1">СО</span><span style="color:#F1F5F9;font-weight:600;">4 250 ₸</span>
+        <!-- 910 form card -->
+        <div class="phone-card">
+          <div style="font-size:10px;color:#64748B;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;">910 Декларация</div>
+          <span class="mockup-badge badge-blue" style="font-size:10px;">I п/г 2026</span>
+          <hr class="mockup-divider"/>
+          <div class="phone-row"><span>Доход</span><span id="form910income">1 240 000 ₸</span></div>
+          <div class="phone-row"><span>Налог 4%</span><span style="color:#FCD34D;" id="form910tax">49 600 ₸</span></div>
+          <div class="phone-row"><span>ИПН</span><span>24 800 ₸</span></div>
+          <div class="phone-row"><span>Соцналог</span><span>24 800 ₸</span></div>
+          <hr class="mockup-divider"/>
+          <div style="font-size:10px;color:#64748B;">Срок: 15 августа 2026</div>
         </div>
-        <div class="mockup-item">
-          <div class="mockup-dot" style="background:#FCD34D"></div>
-          <span style="flex:1">ВОСМС</span><span style="color:#F1F5F9;font-weight:600;">5 950 ₸</span>
+        <!-- Invoice -->
+        <div class="phone-card" style="margin-top:8px;">
+          <div style="font-size:10px;color:#64748B;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;">Счёт № 042</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-size:11px;color:#F1F5F9;font-weight:700;">ТОО АстанаТрейд</span>
+            <span class="mockup-badge badge-green" style="font-size:10px;">Оплачен</span>
+          </div>
+          <div style="font-size:16px;color:#7DD3FC;font-weight:800;margin-top:6px;">540 000 ₸</div>
         </div>
-      </div>
-      <hr class="mockup-divider"/>
-      <div class="mockup-row">
-        <span style="font-size:13px;font-weight:700;color:#F1F5F9;">Итого: 18 700 ₸</span>
-        <span class="mockup-badge badge-blue">до 25 марта</span>
-      </div>
-    </div>
-
-    <!-- Card 3: Live transaction feed -->
-    <div class="mockup-card">
-      <div class="mockup-row">
-        <div class="mockup-label">Операции</div>
-        <span style="font-size:11px;color:#4ADE80;font-weight:600;"><span class="live-dot"></span>Live</span>
-      </div>
-      <div class="tx-feed" id="txFeed">
-        <div class="tx-row"><span>ТОО Стройком</span><span class="tx-amount-in">+320 000 ₸</span></div>
-        <div class="tx-row"><span>Аренда офиса</span><span class="tx-amount-out">−80 000 ₸</span></div>
-        <div class="tx-row"><span>Касса Дидар ИП</span><span class="tx-amount-in">+95 000 ₸</span></div>
-      </div>
-    </div>
-
-    <!-- Card 4: 910 form status -->
-    <div class="mockup-card">
-      <div class="mockup-label">910 Декларация</div>
-      <div class="mockup-row" style="margin-top:8px;">
-        <span class="mockup-badge badge-blue">I полугодие 2026</span>
-      </div>
-      <hr class="mockup-divider"/>
-      <div class="mockup-list">
-        <div class="mockup-item" style="justify-content:space-between;">
-          <span>Доход</span><span style="color:#F1F5F9;font-weight:600;" id="form910income">1 240 000 ₸</span>
-        </div>
-        <div class="mockup-item" style="justify-content:space-between;">
-          <span>Налог 4%</span><span style="color:#FCD34D;font-weight:600;" id="form910tax">49 600 ₸</span>
-        </div>
-        <div class="mockup-item" style="justify-content:space-between;">
-          <span>ИПН</span><span style="color:#F1F5F9;font-weight:600;">24 800 ₸</span>
-        </div>
-        <div class="mockup-item" style="justify-content:space-between;">
-          <span>Соцналог</span><span style="color:#F1F5F9;font-weight:600;">24 800 ₸</span>
+        <!-- Deadline warning -->
+        <div class="phone-card phone-card-warn" style="margin-top:8px;">
+          <div style="font-size:11px;color:#FCD34D;font-weight:700;">Дедлайн через</div>
+          <div style="font-size:20px;color:#F1F5F9;font-weight:800;margin-top:2px;" id="deadlineBadge">3 дня</div>
+          <div style="font-size:10px;color:#94A3B8;margin-top:2px;">Соцплатежи · до 25 марта</div>
         </div>
       </div>
-      <hr class="mockup-divider"/>
-      <div style="font-size:11px;color:#64748B;">Срок подачи: 15 августа 2026</div>
     </div>
 
   </div>
@@ -632,82 +732,48 @@
   <div class="container">
     <div class="section-head reveal">
       <h2 class="section-title">Что умеет Esep</h2>
-      <p class="section-sub">Всё что нужно малому бизнесу — без лишнего</p>
+      <p class="section-sub">Нажмите и держите карточку чтобы задержать · автосмена каждые 2.5 сек</p>
     </div>
-    <div class="tabs reveal">
-      <button class="tab-btn active" onclick="switchTab('ip', this)">Для ИП</button>
-      <button class="tab-btn" onclick="switchTab('accountant', this)">Для бухгалтера</button>
-    </div>
+    <div class="popup-showcase">
 
-    <div class="tab-content active" id="tab-ip">
-      <div class="feat-grid">
-        <div class="feat-card reveal">
-          <div class="feat-icon" style="background:rgba(34,197,94,.1);">💰</div>
-          <div class="feat-title">Быстрый учёт доходов</div>
-          <div class="feat-desc">Нажмите «+ Доход» — введите сумму — готово. Никаких лишних полей. 2 тапа с главного экрана.</div>
-        </div>
-        <div class="feat-card reveal">
-          <div class="feat-icon" style="background:rgba(14,165,233,.1);">📄</div>
-          <div class="feat-title">PDF-счета клиентам</div>
-          <div class="feat-desc">Создайте счёт с позициями, отправьте клиенту PDF. Отслеживайте статус: черновик → отправлен → оплачен.</div>
-        </div>
-        <div class="feat-card reveal">
-          <div class="feat-icon" style="background:rgba(239,68,68,.1);">🧮</div>
-          <div class="feat-title">Налоговый калькулятор</div>
-          <div class="feat-desc">Введите доход — получите точную сумму налога по режиму: 910 (4%), ЕСП, Патент, ОУР. Ставки 2026.</div>
-        </div>
-        <div class="feat-card reveal">
-          <div class="feat-icon" style="background:rgba(245,158,11,.1);">⏰</div>
-          <div class="feat-title">Напоминания о дедлайнах</div>
-          <div class="feat-desc">До 25-го — точная сумма ОПВ + СО + ВОСМС. За 30/7/3 дня до 910 формы. Никогда не пропустите срок.</div>
-        </div>
-        <div class="feat-card reveal">
-          <div class="feat-icon" style="background:rgba(123,47,190,.1);">👥</div>
-          <div class="feat-title">База клиентов</div>
-          <div class="feat-desc">БИН/ИИН, история счетов, задолженность. Все контрагенты в одном месте.</div>
-        </div>
-        <div class="feat-card reveal">
-          <div class="feat-icon" style="background:rgba(14,165,233,.1);">📊</div>
-          <div class="feat-title">Дашборд с аналитикой</div>
-          <div class="feat-desc">График доходов/расходов за 6 месяцев. Использование лимита упрощёнки. Прибыль за текущий месяц.</div>
+      <!-- Left: phone silhouette showing app UI -->
+      <div class="popup-phone reveal">
+        <div class="pp-notch-bar"><div class="pp-notch"></div></div>
+        <div class="pp-screen">
+          <div class="pp-app-bar">
+            <span style="font-size:13px;font-weight:800;color:var(--dark);">Esep</span>
+            <span style="font-size:11px;color:var(--muted);">Дашборд</span>
+          </div>
+          <div class="pp-metric-card">
+            <div style="font-size:10px;color:var(--muted);margin-bottom:3px;">Доход за месяц</div>
+            <div style="font-size:18px;font-weight:800;color:var(--dark);">1 485 000 ₸</div>
+            <div class="pp-prog"><div class="pp-prog-fill"></div></div>
+            <div style="display:flex;justify-content:space-between;margin-top:4px;">
+              <span style="font-size:10px;color:var(--muted);">Лимит 24 038 МРП</span>
+              <span style="font-size:10px;color:var(--primary);font-weight:600;">62%</span>
+            </div>
+          </div>
+          <div class="pp-invoice">
+            <div style="font-size:11px;font-weight:700;color:var(--dark);">Счёт №043 · ТОО АрманГруп</div>
+            <div style="display:flex;justify-content:space-between;margin-top:4px;">
+              <span style="font-size:13px;font-weight:800;color:var(--primary);">285 000 ₸</span>
+              <span style="font-size:11px;background:rgba(34,197,94,.1);color:var(--income);padding:2px 8px;border-radius:10px;font-weight:700;">Отправлен</span>
+            </div>
+          </div>
+          <div class="pp-deadlines">
+            <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:6px;">ДЕДЛАЙНЫ</div>
+            <div class="pp-dl-item"><span>ОПВ + СО</span><span style="color:#F59E0B;font-weight:700;">до 25 мар</span></div>
+            <div class="pp-dl-item"><span>910 форма</span><span style="color:var(--income);font-weight:700;">15 авг</span></div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="tab-content" id="tab-accountant">
-      <div class="feat-grid">
-        <div class="feat-card reveal">
-          <div class="feat-icon" style="background:rgba(14,165,233,.1);">🗂️</div>
-          <div class="feat-title">Command Center</div>
-          <div class="feat-desc">Все клиенты одним экраном: 🔴 Срочно / 🟡 В работе / 🟢 Готово. Фильтры по статусу, документам, должникам.</div>
-        </div>
-        <div class="feat-card reveal">
-          <div class="feat-icon" style="background:rgba(245,158,11,.1);">📅</div>
-          <div class="feat-title">Единый календарь</div>
-          <div class="feat-desc">Все дедлайны всех клиентов в одном месте. Авто-генерация по режиму: ОПВ, 910, ЕСП, 200.00, 700.00.</div>
-        </div>
-        <div class="feat-card reveal">
-          <div class="feat-icon" style="background:rgba(34,197,94,.1);">✅</div>
-          <div class="feat-title">Чеклист документов</div>
-          <div class="feat-desc">Выписка получена? Акт подписан? Тапните чтобы отметить. Видно сразу кто задерживает документы.</div>
-        </div>
-        <div class="feat-card reveal">
-          <div class="feat-icon" style="background:rgba(123,47,190,.1);">👔</div>
-          <div class="feat-title">Расчёт ФОТ</div>
-          <div class="feat-desc">Введите зарплату — получите ОПВ, ИПН, СО, ВОСМС по каждому сотруднику. Сколько на руки, сколько работодатель.</div>
-        </div>
-        <div class="feat-card reveal">
-          <div class="feat-icon" style="background:rgba(239,68,68,.1);">💵</div>
-          <div class="feat-title">Мой гонорар</div>
-          <div class="feat-desc">Кто оплатил бухгалтерские услуги, кто нет. Итого получено / ожидается за месяц.</div>
-        </div>
-        <div class="feat-card reveal">
-          <div class="feat-icon" style="background:rgba(14,165,233,.1);">➕</div>
-          <div class="feat-title">ИП + ТОО</div>
-          <div class="feat-desc">Любой тип клиента: ИП на ЕСП/Патент/Упрощёнка или ТОО на ОУР. Разные дедлайны и чеклисты автоматически.</div>
-        </div>
-      </div>
+      <!-- Right: popup cards (injected by JS) -->
+      <div class="popup-area reveal" id="popupArea"></div>
+
     </div>
+    <!-- Dot indicators -->
+    <div class="popup-dots" id="popupDots"></div>
   </div>
 </section>
 
@@ -1029,14 +1095,6 @@
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // ── Tab switching
-  function switchTab(id, btn) {
-    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('tab-' + id).classList.add('active');
-    btn.classList.add('active');
-  }
-
   // ── FAQ accordion
   function toggleFaq(btn) {
     const item = btn.closest('.faq-item');
@@ -1136,9 +1194,72 @@
     if (!deadlineEl) return;
     daysLeft = daysLeft > 1 ? daysLeft - 1 : 5;
     deadlineEl.textContent = daysLeft + (daysLeft === 1 ? ' день' : ' дня');
-    deadlineEl.className = 'mockup-badge badge-pulse ' +
-      (daysLeft <= 2 ? 'badge-red' : daysLeft <= 3 ? 'badge-orange' : 'badge-blue');
   }, 5000);
+
+  // ── Feature popup showcase ────────────────────────────────────────────────
+  const popupFeatures = [
+    { icon:'💰', bg:'rgba(34,197,94,.1)',   title:'Быстрый учёт доходов',     desc:'«+ Доход» — введите сумму — готово. Всего 2 тапа с главного экрана, никаких лишних полей.',                                  tag:'Для ИП' },
+    { icon:'📄', bg:'rgba(14,165,233,.1)',  title:'PDF-счета клиентам',        desc:'Создайте счёт с позициями, отправьте PDF клиенту. Статус: черновик → отправлен → оплачен.',                                    tag:'Для ИП' },
+    { icon:'🧮', bg:'rgba(239,68,68,.1)',   title:'Налоговый калькулятор',     desc:'Введите доход — получите точную сумму: 910 (4%), ЕСП, Патент, ОУР. Актуальные ставки 2026.',                                  tag:'Для ИП' },
+    { icon:'⏰', bg:'rgba(245,158,11,.1)',  title:'Дедлайны без штрафов',      desc:'Напоминания за 30 / 7 / 3 дня до ОПВ, СО, ВОСМС и 910 формы. Никогда не пропустите срок.',                                   tag:'Для ИП' },
+    { icon:'🗂️', bg:'rgba(14,165,233,.1)', title:'Command Center',             desc:'Все клиенты одним экраном: 🔴 Срочно / 🟡 В работе / 🟢 Готово. Фильтры по статусу и долгам.',                              tag:'Бухгалтер' },
+    { icon:'📅', bg:'rgba(245,158,11,.1)',  title:'Единый дедлайн-календарь',  desc:'Все сроки всех клиентов — в одном месте. Авто-генерация по режиму: ОПВ, 910, 200.00, 700.00.',                               tag:'Бухгалтер' },
+    { icon:'👔', bg:'rgba(123,47,190,.1)', title:'Расчёт ФОТ',                desc:'Введите зарплату — получите ОПВ, ИПН, СО, ВОСМС по каждому сотруднику. Сколько на руки и платит работодатель.',              tag:'Бухгалтер' },
+    { icon:'📊', bg:'rgba(56,189,248,.1)',  title:'Аналитика за 12 месяцев',   desc:'График доходов и расходов, контроль лимита упрощёнки (24 038 МРП) и прибыль по каждому периоду.',                            tag:'Для ИП' },
+  ];
+
+  const popupArea   = document.getElementById('popupArea');
+  const popupDotsEl = document.getElementById('popupDots');
+
+  if (popupArea && popupDotsEl) {
+    popupFeatures.forEach((f, i) => {
+      const card = document.createElement('div');
+      card.className = 'popup-card' + (i === 0 ? ' active' : '');
+      card.innerHTML = `
+        <div class="popup-card-top">
+          <div class="popup-icon" style="background:${f.bg}">${f.icon}</div>
+          <div class="popup-card-meta">
+            <span class="popup-tag">${f.tag}</span>
+            <span class="popup-card-num">${i + 1} / ${popupFeatures.length}</span>
+          </div>
+        </div>
+        <div class="popup-card-title">${f.title}</div>
+        <div class="popup-card-desc">${f.desc}</div>
+      `;
+      card.addEventListener('mousedown',  () => pausePopup());
+      card.addEventListener('touchstart', () => pausePopup(), { passive: true });
+      card.addEventListener('mouseup',    () => resumePopup());
+      card.addEventListener('mouseleave', () => resumePopup());
+      card.addEventListener('touchend',   () => resumePopup());
+      popupArea.appendChild(card);
+
+      const dot = document.createElement('div');
+      dot.className = 'popup-dot-item' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => { goToCard(i); resumePopup(); });
+      popupDotsEl.appendChild(dot);
+    });
+
+    let currentCard = 0;
+    let popupTimer  = null;
+    let paused      = false;
+
+    function goToCard(idx) {
+      const cards = popupArea.querySelectorAll('.popup-card');
+      const dots  = popupDotsEl.querySelectorAll('.popup-dot-item');
+      cards[currentCard].classList.remove('active');
+      dots[currentCard].classList.remove('active');
+      currentCard = ((idx % popupFeatures.length) + popupFeatures.length) % popupFeatures.length;
+      cards[currentCard].classList.add('active');
+      dots[currentCard].classList.add('active');
+    }
+
+    function startTimer() { popupTimer = setInterval(() => goToCard(currentCard + 1), 2500); }
+    function stopTimer()  { clearInterval(popupTimer); }
+    function pausePopup() { paused = true;  stopTimer(); }
+    function resumePopup(){ if (paused) { paused = false; stopTimer(); startTimer(); } }
+
+    startTimer();
+  }
 </script>
 </body>
 </html>
