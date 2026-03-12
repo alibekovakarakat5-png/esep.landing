@@ -514,6 +514,7 @@
       <li><a href="/calculator" style="color:var(--primary);font-weight:700">Калькулятор</a></li>
       <li><a href="#pricing">Тарифы</a></li>
       <li><a href="#download">Скачать</a></li>
+      <li><a href="#blog">Блог</a></li>
       <li><a href="#b2b">Для компаний</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
@@ -822,7 +823,7 @@
 
       <!-- Android -->
       <div style="background:#fff;border:1px solid #e5e7eb;border-radius:20px;padding:32px;flex:1;min-width:260px;max-width:360px;text-align:center">
-        <div style="font-size:48px;margin-bottom:12px">🤖</div>
+        <div style="margin-bottom:12px"><svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.07 5.56a1 1 0 0 1 1.37.37l2.3 4a14.2 14.2 0 0 1 10.52 0l2.3-4a1 1 0 0 1 1.74 1l-2.22 3.87A13 13 0 0 1 37 22H11a13 13 0 0 1 5.92-11.2l-2.22-3.87a1 1 0 0 1 .37-1.37zM19.5 15a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm9 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" fill="#3DDC84"/><rect x="11" y="22" width="26" height="18" rx="2" fill="#3DDC84"/><rect x="6" y="24" width="4" height="12" rx="2" fill="#3DDC84"/><rect x="38" y="24" width="4" height="12" rx="2" fill="#3DDC84"/><rect x="18" y="40" width="4" height="6" rx="2" fill="#3DDC84"/><rect x="26" y="40" width="4" height="6" rx="2" fill="#3DDC84"/></svg></div>
         <div style="font-weight:700;font-size:18px;margin-bottom:6px">Android</div>
         <div style="color:#6b7280;font-size:13px;margin-bottom:20px">Скачайте .apk файл и установите на телефон. При установке разрешите «Неизвестные источники».</div>
         <!-- TODO: замените ссылку на реальный GitHub Release URL после flutter build apk -->
@@ -837,7 +838,7 @@
 
       <!-- iOS -->
       <div style="background:#fff;border:1px solid #e5e7eb;border-radius:20px;padding:32px;flex:1;min-width:260px;max-width:360px;text-align:center">
-        <div style="font-size:48px;margin-bottom:12px">🍎</div>
+        <div style="margin-bottom:12px"><svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.02 25.33c-.05-5.1 4.15-7.54 4.34-7.66a9.42 9.42 0 0 0-7.42-4.01c-3.16-.32-6.16 1.86-7.77 1.86-1.6 0-4.08-1.82-6.7-1.77A9.9 9.9 0 0 0 8.1 18.1c-3.57 6.18-.91 15.34 2.56 20.36 1.7 2.46 3.73 5.22 6.39 5.12 2.56-.1 3.53-1.66 6.63-1.66 3.1 0 3.97 1.66 6.67 1.6 2.76-.04 4.51-2.5 6.19-4.97a20.5 20.5 0 0 0 2.81-5.77 9.07 9.07 0 0 1-5.33-8.45z" fill="#333"/><path d="M29.08 10.53A9.24 9.24 0 0 0 31.19 4a9.4 9.4 0 0 0-6.08 3.15 8.8 8.8 0 0 0-2.17 6.38 7.78 7.78 0 0 0 6.14-3z" fill="#333"/></svg></div>
         <div style="font-weight:700;font-size:18px;margin-bottom:6px">iPhone (iOS)</div>
         <div style="color:#6b7280;font-size:13px;margin-bottom:20px">iOS-версия в разработке. Напишите нам — добавим вас в список ожидания TestFlight.</div>
         <a href="https://wa.me/77075884651?text=%D0%A5%D0%BE%D1%87%D1%83+%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C+Esep+%D0%B4%D0%BB%D1%8F+iPhone"
@@ -855,6 +856,170 @@
     </div>
   </div>
 </section>
+
+<!-- ── Blog ──────────────────────────────────────────────────────────────────── -->
+<section class="section" id="blog">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2 class="section-title">База знаний Esep</h2>
+      <p class="section-sub">Актуальные статьи о налогах, законах и учёте для ИП Казахстана</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="reveal" style="display:flex;justify-content:center;gap:8px;margin-bottom:32px">
+      <button id="blog-tab-ip" onclick="showBlogTab('ip')"
+        style="padding:8px 20px;border-radius:20px;font-size:14px;font-weight:600;cursor:pointer;border:2px solid var(--primary);background:var(--primary);color:#fff;transition:all .2s">
+        Для ИП
+      </button>
+      <button id="blog-tab-accountant" onclick="showBlogTab('accountant')"
+        style="padding:8px 20px;border-radius:20px;font-size:14px;font-weight:600;cursor:pointer;border:2px solid var(--primary);background:#fff;color:var(--primary);transition:all .2s">
+        Для бухгалтеров
+      </button>
+    </div>
+
+    <!-- Articles grid — loaded from API -->
+    <div id="blog-grid" class="reveal" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;min-height:200px">
+      <div style="grid-column:1/-1;text-align:center;padding:40px;color:#9ca3af;font-size:14px">Загрузка статей...</div>
+    </div>
+
+    <!-- Fallback static articles (always shown, updated via admin) -->
+    <div id="blog-static" style="display:none;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px">
+      <!-- These are rendered if API is unavailable -->
+      <article style="background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:24px;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 8px 30px rgba(14,165,233,0.12)'" onmouseout="this.style.boxShadow='none'">
+        <div style="display:flex;gap:8px;margin-bottom:12px">
+          <span style="background:#e0f2fe;color:#0369a1;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:600">ИП</span>
+          <span style="background:#f1f5f9;color:#64748b;padding:2px 10px;border-radius:20px;font-size:12px">Налоги</span>
+        </div>
+        <h3 style="font-size:16px;font-weight:700;margin-bottom:8px;color:var(--dark);line-height:1.4">Налоги ИП в 2026 году: полное руководство</h3>
+        <p style="font-size:13px;color:#64748b;margin-bottom:16px;line-height:1.6">Все ставки, сроки и формулы — простым языком. ОПВ, СО, ВОСМС и упрощёнка 910.</p>
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <span style="font-size:12px;color:#9ca3af">Март 2026</span>
+          <a href="/blog/nalog-ip-2026" style="font-size:13px;font-weight:600;color:var(--primary);text-decoration:none">Читать →</a>
+        </div>
+      </article>
+
+      <article style="background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:24px;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 8px 30px rgba(14,165,233,0.12)'" onmouseout="this.style.boxShadow='none'">
+        <div style="display:flex;gap:8px;margin-bottom:12px">
+          <span style="background:#e0f2fe;color:#0369a1;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:600">ИП</span>
+          <span style="background:#f1f5f9;color:#64748b;padding:2px 10px;border-radius:20px;font-size:12px">Соцплатежи</span>
+        </div>
+        <h3 style="font-size:16px;font-weight:700;margin-bottom:8px;color:var(--dark);line-height:1.4">ОПВР 3.5%: что изменилось в 2026</h3>
+        <p style="font-size:13px;color:#64748b;margin-bottom:16px;line-height:1.6">Обязательные пенсионные взносы работодателя выросли. Считаем разницу на реальном примере.</p>
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <span style="font-size:12px;color:#9ca3af">Январь 2026</span>
+          <a href="/blog/opvr-2026" style="font-size:13px;font-weight:600;color:var(--primary);text-decoration:none">Читать →</a>
+        </div>
+      </article>
+
+      <article style="background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:24px;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 8px 30px rgba(14,165,233,0.12)'" onmouseout="this.style.boxShadow='none'">
+        <div style="display:flex;gap:8px;margin-bottom:12px">
+          <span style="background:#f3e8ff;color:#7c3aed;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:600">Бухгалтер</span>
+          <span style="background:#f1f5f9;color:#64748b;padding:2px 10px;border-radius:20px;font-size:12px">Дайджест</span>
+        </div>
+        <h3 style="font-size:16px;font-weight:700;margin-bottom:8px;color:var(--dark);line-height:1.4">Режим самозанятых с 2026: технический разбор</h3>
+        <p style="font-size:13px;color:#64748b;margin-bottom:16px;line-height:1.6">Ст. 774-1 НК РК, ставка 4%, лимит 3 528 МРП. Кто подпадает, как переходить и какие риски.</p>
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <span style="font-size:12px;color:#9ca3af">Февраль 2026</span>
+          <a href="/blog/samozanyatyy-2026" style="font-size:13px;font-weight:600;color:var(--primary);text-decoration:none">Читать →</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="reveal" style="text-align:center;margin-top:32px">
+      <a href="/blog" style="font-size:14px;font-weight:600;color:var(--primary);text-decoration:none;border:2px solid var(--primary);padding:10px 24px;border-radius:10px;display:inline-block;transition:all .2s"
+         onmouseover="this.style.background='var(--primary)';this.style.color='#fff'"
+         onmouseout="this.style.background='transparent';this.style.color='var(--primary)'">
+        Все статьи →
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  #blog-grid .art-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    transition: box-shadow .2s;
+    cursor: pointer;
+  }
+  #blog-grid .art-card:hover { box-shadow: 0 8px 30px rgba(14,165,233,0.12); }
+  #blog-grid .art-card h3 { font-size: 16px; font-weight: 700; margin: 10px 0 8px; color: var(--dark); line-height: 1.4; }
+  #blog-grid .art-card p  { font-size: 13px; color: #64748b; line-height: 1.6; margin-bottom: 16px; }
+  #blog-grid .art-card .art-meta { display:flex; justify-content:space-between; align-items:center; }
+  #blog-grid .art-card .art-date { font-size:12px; color:#9ca3af; }
+  #blog-grid .art-card .art-link { font-size:13px; font-weight:600; color:var(--primary); text-decoration:none; }
+  .badge-ip  { background:#e0f2fe; color:#0369a1; padding:2px 10px; border-radius:20px; font-size:12px; font-weight:600; }
+  .badge-acc { background:#f3e8ff; color:#7c3aed; padding:2px 10px; border-radius:20px; font-size:12px; font-weight:600; }
+  .badge-all { background:#dcfce7; color:#16a34a; padding:2px 10px; border-radius:20px; font-size:12px; font-weight:600; }
+  .badge-tag { background:#f1f5f9; color:#64748b; padding:2px 10px; border-radius:20px; font-size:12px; }
+</style>
+
+<script>
+(function() {
+  const API = 'https://esep-production.up.railway.app/api/articles';
+  let allArticles = [];
+  let currentTab  = 'ip';
+
+  function audienceBadge(a) {
+    if (a === 'ip')         return '<span class="badge-ip">ИП</span>';
+    if (a === 'accountant') return '<span class="badge-acc">Бухгалтер</span>';
+    return '<span class="badge-all">Всем</span>';
+  }
+
+  function renderArticles(arts) {
+    const grid = document.getElementById('blog-grid');
+    if (!arts.length) {
+      grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:#9ca3af;font-size:14px">Скоро здесь появятся статьи</div>';
+      return;
+    }
+    grid.innerHTML = arts.map((a) => {
+      const tags = (a.tags || []).slice(0, 2).map(t => `<span class="badge-tag">${t}</span>`).join('');
+      const date = a.published_at ? new Date(a.published_at).toLocaleDateString('ru-RU', {month:'long',year:'numeric'}) : '';
+      return `<div class="art-card" onclick="location.href='/blog/${a.slug}'">
+        <div style="display:flex;gap:6px;flex-wrap:wrap">${audienceBadge(a.audience)}${tags}</div>
+        <h3>${a.title}</h3>
+        <p>${a.summary || ''}</p>
+        <div class="art-meta">
+          <span class="art-date">${date}</span>
+          <a class="art-link" href="/blog/${a.slug}" onclick="event.stopPropagation()">Читать →</a>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  function showBlogTab(tab) {
+    currentTab = tab;
+    document.getElementById('blog-tab-ip').style.background = tab === 'ip' ? 'var(--primary)' : '#fff';
+    document.getElementById('blog-tab-ip').style.color      = tab === 'ip' ? '#fff' : 'var(--primary)';
+    document.getElementById('blog-tab-accountant').style.background = tab === 'accountant' ? 'var(--primary)' : '#fff';
+    document.getElementById('blog-tab-accountant').style.color      = tab === 'accountant' ? '#fff' : 'var(--primary)';
+    const filtered = allArticles.filter(a => a.audience === tab || a.audience === 'all');
+    renderArticles(filtered);
+  }
+  window.showBlogTab = showBlogTab;
+
+  fetch(API + '?audience=')
+    .then(r => r.ok ? r.json() : [])
+    .then(arts => {
+      allArticles = arts;
+      if (!arts.length) {
+        // Show static fallback cards
+        document.getElementById('blog-grid').style.display = 'none';
+        const s = document.getElementById('blog-static');
+        s.style.display = 'grid';
+        return;
+      }
+      showBlogTab('ip');
+    })
+    .catch(() => {
+      document.getElementById('blog-grid').style.display = 'none';
+      const s = document.getElementById('blog-static');
+      s.style.display = 'grid';
+    });
+})();
+</script>
 
 <!-- ── Pricing ────────────────────────────────────────────────────────────────── -->
 <section class="section" id="pricing">
