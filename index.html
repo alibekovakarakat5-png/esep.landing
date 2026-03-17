@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Esep — Учёт для ИП Казахстана</title>
-  <meta name="description" content="Esep — веб-приложение для ИП и бухгалтеров Казахстана. Учёт доходов, счета клиентам, расчёт ОПВ/СО/ВОСМС. Актуальные ставки 2026. Проще 1С, умнее Excel." />
-  <meta name="keywords" content="учёт ИП Казахстан, 1С альтернатива, упрощёнка 910, ОПВ расчёт, счета ИП, бухгалтер онлайн, есеп" />
-  <meta property="og:title" content="Esep — Учёт для ИП Казахстана" />
-  <meta property="og:description" content="Проще 1С, умнее Excel. Счета, налоги, доходы — всё в одном приложении." />
+  <title>Esep — Учёт для ИП, ТОО и бухгалтеров Казахстана</title>
+  <meta name="description" content="Esep — приложение для ИП, ТОО и бухгалтеров Казахстана. 5 калькуляторов, поиск по БИН, импорт банка, PDF-счета. Актуальные ставки 2026. Проще 1С, умнее Excel." />
+  <meta name="keywords" content="учёт ИП Казахстан, ТОО калькулятор, 1С альтернатива, упрощёнка 910, ОПВ расчёт, счета ИП, бухгалтер онлайн, БИН поиск, зарплатный калькулятор, есеп" />
+  <meta property="og:title" content="Esep — Учёт для ИП, ТОО и бухгалтеров Казахстана" />
+  <meta property="og:description" content="5 калькуляторов, поиск по БИН, импорт банка. Проще 1С, умнее Excel." />
   <meta property="og:type" content="website" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230EA5E9'/%3E%3Ctext x='16' y='23' font-family='Inter%2CArial%2Csans-serif' font-size='21' font-weight='800' fill='white' text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -300,7 +300,7 @@
     .trust-logo { font-size: 13px; font-weight: 600; color: var(--muted); opacity: 0.7; }
 
     /* ── For Whom ─────────────────────────────────────────────────── */
-    .whom-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .whom-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
     .whom-card {
       padding: 28px; border-radius: var(--radius);
       border: 1.5px solid var(--border); transition: border-color .2s, box-shadow .2s;
@@ -483,7 +483,7 @@
     @media (max-width: 960px) {
       .hero-inner { grid-template-columns: 1fr; gap: 40px; }
       .hero-visual { display: none; }
-      .whom-grid { grid-template-columns: 1fr; }
+      .whom-grid { grid-template-columns: repeat(2, 1fr); }
       .feat-grid { grid-template-columns: repeat(2, 1fr); }
       .price-grid { grid-template-columns: repeat(2, 1fr); }
       .b2b-grid { grid-template-columns: 1fr; }
@@ -500,6 +500,8 @@
       .hero-stats { flex-wrap: wrap; gap: 20px; }
       .compare-table { font-size: 12px; }
       .compare-table th, .compare-table td { padding: 10px 12px; }
+      #telegram .reveal[style*="grid"] { grid-template-columns: 1fr !important; }
+      .whom-grid { grid-template-columns: 1fr !important; }
     }
   </style>
 </head>
@@ -517,6 +519,7 @@
       <li><a href="#blog">Блог</a></li>
       <li><a href="#b2b">Для компаний</a></li>
       <li><a href="#faq">FAQ</a></li>
+      <li><a href="https://t.me/EsepKZ_bot" target="_blank" style="color:var(--gold) !important;font-weight:700;">Telegram-бот</a></li>
     </ul>
     <div class="nav-cta">
       <a href="https://app.esep.kz" class="nav-login">Войти</a>
@@ -534,6 +537,7 @@
   <a href="#faq">FAQ</a>
   <a href="https://app.esep.kz">Войти</a>
   <a href="https://wa.me/77075884651?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21+%D0%A5%D0%BE%D1%87%D1%83+%D0%BD%D0%B0%D1%87%D0%B0%D1%82%D1%8C+%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D1%82%D1%8C+%D1%81+Esep" style="color:var(--primary);font-weight:700;">→ Начать бесплатно</a>
+  <a href="https://t.me/EsepKZ_bot" target="_blank" style="color:var(--gold);font-weight:700;">→ Telegram-бот</a>
 </div>
 
 <!-- ── Hero ────────────────────────────────────────────────────────────────── -->
@@ -545,12 +549,12 @@
       </div>
       <div class="hero-wordmark reveal">ESEP</div>
       <h1 class="hero-title reveal">
-        Штрафы, декларации, налоги —<br/>
-        <span class="accent">всё под контролем</span>
+        ИП, ТОО, бухгалтер —<br/>
+        <span class="accent">всё в одном приложении</span>
       </h1>
       <p class="hero-sub reveal">
-        Автоматический расчёт ОПВ, СО, ВОСМС и 910 формы. Напоминания за 3 дня до дедлайна.
-        Для ИП, бухгалтеров и малого бизнеса Казахстана.
+        5 калькуляторов (ИП, ТОО, зарплата, ЕСП, патент). Поиск по БИН, импорт из банка, PDF-счета.
+        Дедлайны с напоминаниями. Для ИП, ТОО и бухгалтеров Казахстана.
       </p>
       <div class="hero-actions reveal">
         <a target="_blank" href="https://wa.me/77075884651?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21+%D0%A5%D0%BE%D1%87%D1%83+%D0%BD%D0%B0%D1%87%D0%B0%D1%82%D1%8C+%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D1%82%D1%8C+%D1%81+Esep" class="btn btn-hero-primary">✨ Начать бесплатно</a>
@@ -558,16 +562,16 @@
       </div>
       <div class="hero-stats reveal">
         <div>
-          <div class="hero-stat-val">1.8 млн</div>
-          <div class="hero-stat-label">ИП в Казахстане</div>
+          <div class="hero-stat-val">5</div>
+          <div class="hero-stat-label">Калькуляторов</div>
         </div>
         <div>
-          <div class="hero-stat-val">3%</div>
-          <div class="hero-stat-label">Ставка упрощёнки</div>
+          <div class="hero-stat-val">БИН</div>
+          <div class="hero-stat-label">Поиск компаний</div>
         </div>
         <div>
-          <div class="hero-stat-val">25-е</div>
-          <div class="hero-stat-label">Дедлайн соцплатежей</div>
+          <div class="hero-stat-val">2026</div>
+          <div class="hero-stat-label">Актуальные ставки</div>
         </div>
         <div>
           <div class="hero-stat-val">0 ₸</div>
@@ -690,7 +694,7 @@
   <div class="container">
     <div class="section-head reveal">
       <h2 class="section-title">Для кого Esep</h2>
-      <p class="section-sub">Три сценария — один инструмент, разные интерфейсы</p>
+      <p class="section-sub">Четыре сценария — один инструмент, разные интерфейсы</p>
     </div>
     <div class="whom-grid">
       <div class="whom-card reveal">
@@ -713,6 +717,17 @@
           <div class="whom-feat">Единый календарь 910 / ОПВ / 200.00 / 700.00</div>
           <div class="whom-feat">Расчёт ФОТ: зарплата → ОПВ, ИПН, СО, ВОСМС</div>
           <div class="whom-feat">Чеклист документов по каждому периоду</div>
+        </div>
+      </div>
+      <div class="whom-card reveal">
+        <div class="whom-icon" style="background:rgba(34,197,94,.1);">🏭</div>
+        <div class="whom-title">ТОО на общеустановленном</div>
+        <div class="whom-desc">Нужен расчёт КПН, НДС, дивидендов и зарплат сотрудников</div>
+        <div class="whom-features">
+          <div class="whom-feat">Калькулятор КПН 20% + НДС 12%</div>
+          <div class="whom-feat">Расчёт дивидендов (ИПН 5%)</div>
+          <div class="whom-feat">Зарплатный калькулятор (ОПВ, ИПН, СО)</div>
+          <div class="whom-feat">Поиск по БИН: компания, директор</div>
         </div>
       </div>
       <div class="whom-card reveal">
@@ -804,7 +819,12 @@
           <tr><td>Налоги КЗ 2026</td><td>⚠️ Надо настраивать</td><td>❌ Вручную</td><td class="highlight">✅ Встроено</td></tr>
           <tr><td>PDF-счета</td><td>✅</td><td>⚠️ Шаблоны</td><td class="highlight">✅</td></tr>
           <tr><td>Расчёт ОПВ / СО / ВОСМС</td><td>✅</td><td>❌ Формулы вручную</td><td class="highlight">✅ Автоматически</td></tr>
+          <tr><td>Калькулятор ТОО (КПН/НДС)</td><td>✅</td><td>❌</td><td class="highlight">✅ Встроен</td></tr>
+          <tr><td>Зарплатный калькулятор</td><td>⚠️ Настройка</td><td>❌ Формулы</td><td class="highlight">✅ 1 клик</td></tr>
+          <tr><td>Поиск по БИН</td><td>❌</td><td>❌</td><td class="highlight">✅ Встроен</td></tr>
+          <tr><td>Импорт из банка</td><td>⚠️ Сложно</td><td>❌</td><td class="highlight">✅ Excel</td></tr>
           <tr><td>Режим бухгалтера</td><td>✅</td><td>❌</td><td class="highlight">✅</td></tr>
+          <tr><td>Telegram-бот</td><td>❌</td><td>❌</td><td class="highlight">✅ @EsepKZ_bot</td></tr>
           <tr><td>Скорость запуска</td><td>Недели настройки</td><td>Сразу</td><td class="highlight">5 минут</td></tr>
         </tbody>
       </table>
@@ -852,7 +872,36 @@
 
     </div>
     <div class="reveal" style="text-align:center;margin-top:24px;color:#6b7280;font-size:13px">
-      Скоро в <strong>Google Play</strong> · Следите за обновлениями в <a href="https://t.me/esep_kz" style="color:#2563eb">Telegram</a>
+      Скоро в <strong>Google Play</strong> · Следите в <a href="https://t.me/esepfinancialsupport" style="color:#2563eb">Telegram-канале</a> · Считайте налоги в <a href="https://t.me/EsepKZ_bot" style="color:#2563eb">@EsepKZ_bot</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Telegram ─────────────────────────────────────────────────────────────── -->
+<section class="section" id="telegram">
+  <div class="container">
+    <div class="section-head reveal" style="text-align:center;">
+      <h2 class="section-title">Esep в Telegram</h2>
+      <p class="section-sub" style="margin:0 auto;">Бесплатный бот для расчётов + канал с полезными советами по налогам</p>
+    </div>
+    <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:800px;margin:0 auto">
+
+      <!-- Bot -->
+      <div style="background:#fff;border:1.5px solid var(--border);border-radius:20px;padding:32px;text-align:center;transition:border-color .2s,box-shadow .2s" onmouseover="this.style.borderColor='var(--primary)';this.style.boxShadow='0 8px 30px rgba(14,165,233,.12)'" onmouseout="this.style.borderColor='var(--border)';this.style.boxShadow='none'">
+        <div style="font-size:48px;margin-bottom:12px;">🤖</div>
+        <div style="font-weight:700;font-size:18px;color:var(--dark);margin-bottom:6px;">@EsepKZ_bot</div>
+        <div style="color:var(--muted);font-size:13px;margin-bottom:20px;line-height:1.6;">Калькулятор налогов прямо в Telegram. Команды: /calc, /social, /rates, /deadlines, /self</div>
+        <a href="https://t.me/EsepKZ_bot" target="_blank" class="btn btn-primary" style="width:100%;justify-content:center;">Открыть бот</a>
+      </div>
+
+      <!-- Channel -->
+      <div style="background:#fff;border:1.5px solid var(--border);border-radius:20px;padding:32px;text-align:center;transition:border-color .2s,box-shadow .2s" onmouseover="this.style.borderColor='var(--gold)';this.style.boxShadow='0 8px 30px rgba(245,158,11,.12)'" onmouseout="this.style.borderColor='var(--border)';this.style.boxShadow='none'">
+        <div style="font-size:48px;margin-bottom:12px;">📢</div>
+        <div style="font-weight:700;font-size:18px;color:var(--dark);margin-bottom:6px;">@esepfinancialsupport</div>
+        <div style="color:var(--muted);font-size:13px;margin-bottom:20px;line-height:1.6;">Ежедневные советы по налогам, дедлайны, изменения в НК РК, кейсы ИП и ТОО</div>
+        <a href="https://t.me/esepfinancialsupport" target="_blank" class="btn btn-gold" style="width:100%;justify-content:center;">Подписаться</a>
+      </div>
+
     </div>
   </div>
 </section>
@@ -862,7 +911,7 @@
   <div class="container">
     <div class="section-head reveal">
       <h2 class="section-title">База знаний Esep</h2>
-      <p class="section-sub">Актуальные статьи о налогах, законах и учёте для ИП Казахстана</p>
+      <p class="section-sub">Актуальные статьи о налогах, законах и учёте для ИП и ТОО Казахстана</p>
     </div>
 
     <!-- Tabs -->
@@ -1036,8 +1085,10 @@
         <div class="price-features">
           <div class="price-feat"><span class="ok">✓</span> До 25 операций в месяц</div>
           <div class="price-feat"><span class="ok">✓</span> 5 счетов в месяц</div>
-          <div class="price-feat"><span class="ok">✓</span> Налоговый калькулятор</div>
-          <div class="price-feat"><span class="no">–</span> PDF-счета</div>
+          <div class="price-feat"><span class="ok">✓</span> 5 калькуляторов (ИП + ТОО + зарплата)</div>
+          <div class="price-feat"><span class="ok">✓</span> Поиск по БИН</div>
+          <div class="price-feat"><span class="ok">✓</span> Telegram-бот @EsepKZ_bot</div>
+          <div class="price-feat"><span class="no">–</span> PDF-счета / Импорт банка</div>
           <div class="price-feat"><span class="no">–</span> Режим бухгалтера</div>
         </div>
         <a href="https://wa.me/77075884651?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21+%D0%A5%D0%BE%D1%87%D1%83+%D0%BF%D0%BE%D0%BF%D1%80%D0%BE%D0%B1%D0%BE%D0%B2%D0%B0%D1%82%D1%8C+Esep+%28%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D1%8B%D0%B9+%D0%BF%D0%BB%D0%B0%D0%BD%29" target="_blank" class="btn btn-outline" style="width:100%;justify-content:center;">Написать в WhatsApp</a>
@@ -1048,11 +1099,12 @@
         <div class="price-val">1 990 <span>₸/мес</span></div>
         <div class="price-desc">Для ИП которые активно работают</div>
         <div class="price-features">
-          <div class="price-feat"><span class="ok">✓</span> Безлимит операций</div>
-          <div class="price-feat"><span class="ok">✓</span> Безлимит счетов + PDF</div>
-          <div class="price-feat"><span class="ok">✓</span> ЭСФ (электронные счета)</div>
-          <div class="price-feat"><span class="ok">✓</span> Напоминания о дедлайнах</div>
+          <div class="price-feat"><span class="ok">✓</span> Безлимит операций + PDF-счета</div>
+          <div class="price-feat"><span class="ok">✓</span> Импорт из банка (Kaspi/Halyk)</div>
+          <div class="price-feat"><span class="ok">✓</span> 5 калькуляторов + поиск по БИН</div>
+          <div class="price-feat"><span class="ok">✓</span> Дедлайны с напоминаниями</div>
           <div class="price-feat"><span class="ok">✓</span> Аналитика за 12 месяцев</div>
+          <div class="price-feat"><span class="ok">✓</span> Telegram-бот @EsepKZ_bot</div>
         </div>
         <a href="https://wa.me/77075884651?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21+%D0%A5%D0%BE%D1%87%D1%83+%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%D1%81%D1%8F+%D0%BA+%D1%82%D0%B0%D1%80%D0%B8%D1%84%D1%83+%C2%AB%D0%98%D0%9F%C2%BB+%281+990+%E2%82%B8%2F%D0%BC%D0%B5%D1%81%29" target="_blank" class="btn btn-primary" style="width:100%;justify-content:center;">Начать — написать в WhatsApp</a>
       </div>
@@ -1063,9 +1115,10 @@
         <div class="price-features">
           <div class="price-feat"><span class="ok">✓</span> До 15 клиентов (ИП + ТОО)</div>
           <div class="price-feat"><span class="ok">✓</span> Единый дедлайн-календарь</div>
-          <div class="price-feat"><span class="ok">✓</span> Расчёт ФОТ сотрудников</div>
+          <div class="price-feat"><span class="ok">✓</span> Зарплатный калькулятор + ФОТ</div>
+          <div class="price-feat"><span class="ok">✓</span> Поиск ЛПР + сохранение контактов</div>
+          <div class="price-feat"><span class="ok">✓</span> Поиск по БИН + калькулятор ТОО</div>
           <div class="price-feat"><span class="ok">✓</span> Чеклисты документов</div>
-          <div class="price-feat"><span class="ok">✓</span> Трекинг гонорара</div>
         </div>
         <a href="https://wa.me/77075884651?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21+%D0%A5%D0%BE%D1%87%D1%83+%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%D1%81%D1%8F+%D0%BA+%D1%82%D0%B0%D1%80%D0%B8%D1%84%D1%83+%C2%AB%D0%91%D1%83%D1%85%D0%B3%D0%B0%D0%BB%D1%82%D0%B5%D1%80%C2%BB+%287+990+%E2%82%B8%2F%D0%BC%D0%B5%D1%81%29" target="_blank" class="btn btn-outline" style="width:100%;justify-content:center;">Попробовать — написать в WhatsApp</a>
       </div>
@@ -1218,14 +1271,35 @@
           Подходит ли Esep для ТОО?
           <span class="arrow">▼</span>
         </button>
-        <div class="faq-a">В режиме бухгалтера — да. Поддерживаются ТОО на ОУР с расчётом ФОТ сотрудников, дедлайнами по 200.00 и 700.00 (КПН). Прямой учёт для ТОО (как самостоятельный пользователь) в разработке.</div>
+        <div class="faq-a">Да! Встроен полный калькулятор ТОО: КПН 20%, НДС 12%, дивиденды 5%, соцналог за сотрудников 9.5%. Зарплатный калькулятор считает ОПВ, ИПН, СО, ВОСМС, ОПВР, ООСМС. В режиме бухгалтера — дедлайны 200.00 и 700.00, поиск ЛПР по БИН.</div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" onclick="toggleFaq(this)">
           Можно ли попробовать бесплатно?
           <span class="arrow">▼</span>
         </button>
-        <div class="faq-a">Да! Бесплатный план — без ограничения по времени, до 25 операций в месяц. Платные тарифы можно попробовать 14 дней бесплатно без привязки карты.</div>
+        <div class="faq-a">Да! Бесплатный план — без ограничения по времени, до 25 операций в месяц. Все 5 калькуляторов и поиск по БИН доступны бесплатно. Платные тарифы можно попробовать 14 дней бесплатно без привязки карты.</div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Что такое поиск по БИН?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-a">Введите 12-значный БИН — Esep покажет название компании, ФИО директора, юридический адрес, вид деятельности и дату регистрации. Данные из stat.gov.kz. Удобно при проверке контрагентов перед выставлением счёта.</div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Какие калькуляторы есть в Esep?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-a">5 калькуляторов: (1) ИП — упрощёнка 910, ЕСП, Патент, ОУР; (2) ТОО — КПН 20%, НДС 12%, дивиденды 5%; (3) Зарплатный — ОПВ, ИПН, СО, ВОСМС, ОПВР, ООСМС; (4) Соцплатежи за ИП; (5) Налоговый прогноз. Все ставки актуальны на 2026 год (МРП 4 325 ₸).</div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Есть ли Telegram-бот?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-a">Да! @EsepKZ_bot — бесплатный бот для быстрого расчёта налогов прямо в Telegram. Команды: /calc (калькулятор), /social (соцплатежи), /rates (ставки 2026), /deadlines (дедлайны). Также подписывайтесь на канал @esepfinancialsupport — полезные советы по налогам каждый день.</div>
       </div>
     </div>
   </div>
@@ -1238,7 +1312,7 @@
       Начните вести учёт правильно уже сегодня
     </h2>
     <p class="reveal" style="font-size:17px;color:rgba(255,255,255,.8);margin-bottom:36px;">
-      Бесплатно · Без установки · Налоги КЗ встроены
+      Бесплатно · 5 калькуляторов · Поиск по БИН · ИП + ТОО + Бухгалтер
     </p>
     <div class="reveal" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
       <a target="_blank" href="https://wa.me/77075884651?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21+%D0%A5%D0%BE%D1%87%D1%83+%D0%BD%D0%B0%D1%87%D0%B0%D1%82%D1%8C+%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D1%82%D1%8C+%D1%81+Esep" class="btn" style="background:white;color:var(--primary);">
@@ -1257,7 +1331,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="#" class="logo">Esep<span>.</span>kz</a>
-        <p>Учёт для ИП и бухгалтеров Казахстана.<br/>Актуальные ставки 2026 · Проще 1С · Умнее Excel</p>
+        <p>Учёт для ИП, ТОО и бухгалтеров Казахстана.<br/>5 калькуляторов · Поиск по БИН · Ставки 2026</p>
       </div>
       <div class="footer-col">
         <h4>Продукт</h4>
@@ -1275,7 +1349,8 @@
       </div>
       <div class="footer-col">
         <h4>Контакты</h4>
-        <a href="https://t.me/esep_kz">Telegram</a>
+        <a href="https://t.me/esepfinancialsupport">Telegram-канал</a>
+        <a href="https://t.me/EsepKZ_bot">Telegram-бот</a>
         <a href="https://wa.me/77075884651">WhatsApp</a>
         <a href="mailto:hello@esep.kz">hello@esep.kz</a>
       </div>
@@ -1283,7 +1358,7 @@
     <div class="footer-bottom">
       <span>© 2026 Esep.kz — Учёт для Казахстана</span>
       <div class="footer-contacts">
-        <a href="https://t.me/esep_kz">Telegram</a>
+        <a href="https://t.me/esepfinancialsupport">Telegram</a>
         <a href="https://wa.me/77075884651">WhatsApp</a>
       </div>
     </div>
@@ -1425,11 +1500,15 @@
   const popupFeatures = [
     { icon:'💰', bg:'rgba(34,197,94,.1)',   title:'Быстрый учёт доходов',     desc:'«+ Доход» — введите сумму — готово. Всего 2 тапа с главного экрана, никаких лишних полей.',                                  tag:'Для ИП' },
     { icon:'📄', bg:'rgba(14,165,233,.1)',  title:'PDF-счета клиентам',        desc:'Создайте счёт с позициями, отправьте PDF клиенту. Статус: черновик → отправлен → оплачен.',                                    tag:'Для ИП' },
-    { icon:'🧮', bg:'rgba(239,68,68,.1)',   title:'Налоговый калькулятор',     desc:'Введите доход — получите точную сумму: 910 (3%), ЕСП, Патент, ОУР. Актуальные ставки 2026.',                                  tag:'Для ИП' },
+    { icon:'🧮', bg:'rgba(239,68,68,.1)',   title:'5 налоговых калькуляторов', desc:'ИП (910, ЕСП, Патент, ОУР), ТОО (КПН + НДС + дивиденды), зарплатный (ОПВ, ИПН, СО, ВОСМС). Ставки 2026.',                   tag:'Все' },
     { icon:'⏰', bg:'rgba(245,158,11,.1)',  title:'Дедлайны без штрафов',      desc:'Напоминания за 30 / 7 / 3 дня до ОПВ, СО, ВОСМС и 910 формы. Никогда не пропустите срок.',                                   tag:'Для ИП' },
-    { icon:'🗂️', bg:'rgba(14,165,233,.1)', title:'Command Center',             desc:'Все клиенты одним экраном: 🔴 Срочно / 🟡 В работе / 🟢 Готово. Фильтры по статусу и долгам.',                              tag:'Бухгалтер' },
+    { icon:'🔍', bg:'rgba(34,197,94,.1)',   title:'Поиск по БИН',             desc:'Введите 12-значный БИН — получите название компании, директора, адрес, вид деятельности. Данные из stat.gov.kz.',              tag:'Все' },
+    { icon:'💼', bg:'rgba(123,47,190,.1)',  title:'Калькулятор ТОО',          desc:'Доход → КПН 20% → НДС 12% → дивиденды 5%. Сотрудники: соцналог 9.5%. Итого: эффективная ставка и чистая прибыль.',           tag:'Для ТОО' },
+    { icon:'💰', bg:'rgba(56,189,248,.1)',  title:'Зарплатный калькулятор',   desc:'Введите оклад — получите: ОПВ 10%, ИПН 10%, ВОСМС 2%, СО 5%, ОПВР 3.5%. На руки и расходы работодателя.',                   tag:'Все' },
+    { icon:'🗂️', bg:'rgba(14,165,233,.1)', title:'Command Center',             desc:'Все клиенты одним экраном: Срочно / В работе / Готово. Фильтры по статусу и долгам.',                                       tag:'Бухгалтер' },
     { icon:'📅', bg:'rgba(245,158,11,.1)',  title:'Единый дедлайн-календарь',  desc:'Все сроки всех клиентов — в одном месте. Авто-генерация по режиму: ОПВ, 910, 200.00, 700.00.',                               tag:'Бухгалтер' },
-    { icon:'👔', bg:'rgba(123,47,190,.1)', title:'Расчёт ФОТ',                desc:'Введите зарплату — получите ОПВ, ИПН, СО, ВОСМС по каждому сотруднику. Сколько на руки и платит работодатель.',              tag:'Бухгалтер' },
+    { icon:'👤', bg:'rgba(239,68,68,.1)',   title:'Поиск ЛПР (лицо принимающее решения)',  desc:'Найдите компанию по названию — получите БИН, директора. Сохраните контакт для дальнейшей работы.',             tag:'Бухгалтер' },
+    { icon:'🏦', bg:'rgba(34,197,94,.1)',   title:'Импорт из банка',           desc:'Загрузите выписку из Kaspi / Halyk — операции автоматически распознаются и добавляются в учёт.',                             tag:'Для ИП' },
     { icon:'📊', bg:'rgba(56,189,248,.1)',  title:'Аналитика за 12 месяцев',   desc:'График доходов и расходов, контроль лимита упрощёнки (24 038 МРП) и прибыль по каждому периоду.',                            tag:'Для ИП' },
   ];
 
