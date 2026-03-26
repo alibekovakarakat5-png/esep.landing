@@ -367,6 +367,73 @@
     }
     .hero-urgency strong { color: #FEE2E2; }
 
+    /* ── Hero audience blocks ──────────────────────────────────── */
+    .hero-audiences {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+      margin-top: 32px; width: 100%; max-width: 700px;
+    }
+    .hero-aud-card {
+      background: rgba(255,255,255,.06); border: 1.5px solid rgba(255,255,255,.12);
+      border-radius: 16px; padding: 20px; cursor: pointer;
+      transition: all .3s ease; text-align: left; position: relative; overflow: hidden;
+    }
+    .hero-aud-card:hover, .hero-aud-card.open {
+      border-color: rgba(14,165,233,.5); background: rgba(14,165,233,.08);
+    }
+    .hero-aud-card .aud-header {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 0;
+      transition: margin .3s;
+    }
+    .hero-aud-card.open .aud-header { margin-bottom: 14px; }
+    .hero-aud-icon { font-size: 28px; }
+    .hero-aud-title { font-size: 16px; font-weight: 700; color: #F1F5F9; }
+    .hero-aud-sub { font-size: 12px; color: #94A3B8; margin-top: 2px; }
+    .hero-aud-arrow { margin-left: auto; color: #64748B; font-size: 14px; transition: transform .3s; }
+    .hero-aud-card.open .hero-aud-arrow { transform: rotate(180deg); }
+    .hero-aud-body {
+      max-height: 0; overflow: hidden; transition: max-height .4s ease;
+    }
+    .hero-aud-card.open .hero-aud-body { max-height: 350px; }
+    .hero-aud-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+    .hero-aud-item { font-size: 13px; color: #CBD5E1; display: flex; gap: 8px; align-items: flex-start; }
+    .hero-aud-item::before { content: '✓'; color: #4ADE80; font-weight: 700; flex-shrink: 0; }
+    .hero-aud-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 20px; border-radius: 10px; font-weight: 600; font-size: 14px;
+      text-decoration: none; transition: all .2s;
+    }
+    .hero-aud-btn.primary { background: var(--primary); color: #fff; }
+    .hero-aud-btn.primary:hover { background: var(--primary-d); }
+    .hero-aud-btn.gold { background: var(--gold); color: #fff; }
+    .hero-aud-btn.gold:hover { background: var(--gold-d); }
+    @media (max-width: 600px) {
+      .hero-audiences { grid-template-columns: 1fr; }
+    }
+
+    /* ── How it works (3 steps) ────────────────────────────────── */
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+      counter-reset: steps;
+    }
+    .step-card {
+      text-align: center; padding: 32px 20px;
+      border: 1.5px solid var(--border); border-radius: var(--radius);
+      position: relative; transition: border-color .2s, box-shadow .2s;
+    }
+    .step-card:hover { border-color: var(--primary); box-shadow: 0 8px 30px rgba(14,165,233,.12); }
+    .step-num {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--primary); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 800; margin: 0 auto 16px;
+    }
+    .step-title { font-size: 17px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+    .step-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+    .step-connector { display: none; }
+    @media (max-width: 700px) {
+      .steps-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+    }
+
     /* responsive hero mockups */
     @media (max-width: 900px) {
       .hero-mockups-dual { grid-template-columns: 1fr; }
@@ -678,6 +745,48 @@
       <div class="hero-urgency reveal">
         <span>Стартовая цена <strong>1 900 ₸/мес</strong> — через 60 дней станет 2 900 ₸</span>
       </div>
+
+      <!-- Two audience blocks -->
+      <div class="hero-audiences reveal">
+        <div class="hero-aud-card" onclick="this.classList.toggle('open')">
+          <div class="aud-header">
+            <span class="hero-aud-icon">🏪</span>
+            <div>
+              <div class="hero-aud-title">Открыли ИП/ТОО?</div>
+              <div class="hero-aud-sub">Не знаете что сдавать и когда</div>
+            </div>
+            <span class="hero-aud-arrow">▼</span>
+          </div>
+          <div class="hero-aud-body">
+            <div class="hero-aud-list">
+              <div class="hero-aud-item">Покажем какие отчёты сдавать и когда</div>
+              <div class="hero-aud-item">Посчитаем налоги за 30 секунд</div>
+              <div class="hero-aud-item">Напомним о дедлайнах — без штрафов</div>
+              <div class="hero-aud-item">PDF-счета клиентам за 2 минуты</div>
+            </div>
+            <a href="https://alibekovakarakat5-png.github.io/esep/" target="_blank" class="hero-aud-btn primary">Открыть демо →</a>
+          </div>
+        </div>
+        <div class="hero-aud-card" onclick="this.classList.toggle('open')">
+          <div class="aud-header">
+            <span class="hero-aud-icon">📋</span>
+            <div>
+              <div class="hero-aud-title">Ведёте клиентов?</div>
+              <div class="hero-aud-sub">Бухгалтер на удалёнке</div>
+            </div>
+            <span class="hero-aud-arrow">▼</span>
+          </div>
+          <div class="hero-aud-body">
+            <div class="hero-aud-list">
+              <div class="hero-aud-item">Все клиенты на одном экране</div>
+              <div class="hero-aud-item">Единый календарь дедлайнов</div>
+              <div class="hero-aud-item">Зарплатный калькулятор + ФОТ</div>
+              <div class="hero-aud-item">Поиск ЛПР по БИН</div>
+            </div>
+            <a href="https://wa.me/77075884651?text=%D0%A5%D0%BE%D1%87%D1%83+%D1%82%D0%B0%D1%80%D0%B8%D1%84+%D0%91%D1%83%D1%85%D0%B3%D0%B0%D0%BB%D1%82%D0%B5%D1%80+4+900+%E2%82%B8" target="_blank" class="hero-aud-btn gold">Подключить за 4 900 ₸ →</a>
+          </div>
+        </div>
+      </div>
       <div class="hero-stats reveal">
         <div>
           <div class="hero-stat-val">5</div>
@@ -702,93 +811,100 @@
   <!-- Live animated mockups: desktop browser + phone -->
   <div class="hero-mockups-dual">
 
-    <!-- Desktop browser frame -->
-    <div class="device-browser">
+    <!-- Desktop browser frame — Tax Calculator preview -->
+    <a href="https://alibekovakarakat5-png.github.io/esep/" target="_blank" style="text-decoration:none;display:block;">
+    <div class="device-browser" style="cursor:pointer;">
       <div class="browser-bar">
         <div class="browser-dots">
           <span></span><span></span><span></span>
         </div>
-        <div class="browser-url">app.esep.kz / dashboard</div>
+        <div class="browser-url">esep.kz / калькулятор налогов</div>
       </div>
       <div class="browser-body">
         <div class="dash-sidebar">
-          <div class="dash-nav-item active">📊</div>
+          <div class="dash-nav-item">📊</div>
           <div class="dash-nav-item">📄</div>
-          <div class="dash-nav-item">👥</div>
+          <div class="dash-nav-item active">🧮</div>
           <div class="dash-nav-item">⚙️</div>
         </div>
         <div class="dash-main">
-          <div class="dash-row-title"><span class="live-dot"></span>Дашборд · Март 2026</div>
+          <div class="dash-row-title"><span class="live-dot"></span>Калькулятор · Упрощёнка 910</div>
+          <div class="dash-card" style="margin-bottom:10px;">
+            <div class="dash-card-lbl">Доход за полугодие</div>
+            <div class="dash-card-num" id="incomeCounter" style="font-size:18px;">1 240 000 ₸</div>
+            <div class="progress-bar" style="margin-top:8px;"><div class="progress-fill" id="limitBar" style="width:1.2%;"></div></div>
+            <div style="display:flex;justify-content:space-between;margin-top:5px;">
+              <span style="font-size:10px;color:#64748B;">Лимит 103.9 млн</span>
+              <span style="font-size:10px;color:#7DD3FC;font-weight:600;" id="limitPct">1.2%</span>
+            </div>
+          </div>
           <div class="dash-cards">
             <div class="dash-card">
-              <div class="dash-card-lbl">Доход за март</div>
-              <div class="dash-card-num" id="incomeCounter">1 240 000 ₸</div>
-              <div class="progress-bar" style="margin-top:8px;"><div class="progress-fill" id="limitBar" style="width:58%;"></div></div>
-              <div style="display:flex;justify-content:space-between;margin-top:5px;">
-                <span style="font-size:10px;color:#64748B;">Лимит</span>
-                <span style="font-size:10px;color:#7DD3FC;font-weight:600;" id="limitPct">58%</span>
+              <div class="dash-card-lbl">Налог 3%</div>
+              <div class="dash-card-num" style="color:#FCD34D;" id="form910tax">37 200 ₸</div>
+              <div style="display:flex;flex-direction:column;gap:3px;margin-top:6px;">
+                <div style="display:flex;justify-content:space-between;font-size:10px;color:#94A3B8;"><span>ИПН 1.5%</span><span style="color:#F1F5F9;">18 600 ₸</span></div>
+                <div style="display:flex;justify-content:space-between;font-size:10px;color:#94A3B8;"><span>Соцналог 1.5%</span><span style="color:#F1F5F9;">18 600 ₸</span></div>
               </div>
             </div>
             <div class="dash-card">
-              <div class="dash-card-lbl">Соцплатежи · срок</div>
-              <div class="dash-card-num" style="font-size:13px;margin-bottom:8px;">до 25 марта</div>
-              <div style="display:flex;flex-direction:column;gap:4px;">
-                <div style="display:flex;justify-content:space-between;font-size:10px;color:#94A3B8;"><span>ОПВ</span><span style="color:#F1F5F9;font-weight:600;">8 500 ₸</span></div>
-                <div style="display:flex;justify-content:space-between;font-size:10px;color:#94A3B8;"><span>СО</span><span style="color:#F1F5F9;font-weight:600;">4 250 ₸</span></div>
-                <div style="display:flex;justify-content:space-between;font-size:10px;color:#94A3B8;"><span>ВОСМС</span><span style="color:#F1F5F9;font-weight:600;">5 950 ₸</span></div>
+              <div class="dash-card-lbl">Соцплатежи/мес</div>
+              <div class="dash-card-num" style="color:#4ADE80;">21 675 ₸</div>
+              <div style="display:flex;flex-direction:column;gap:3px;margin-top:6px;">
+                <div style="display:flex;justify-content:space-between;font-size:10px;color:#94A3B8;"><span>ОПВ</span><span style="color:#F1F5F9;">8 500 ₸</span></div>
+                <div style="display:flex;justify-content:space-between;font-size:10px;color:#94A3B8;"><span>ОПВР+СО+ВОСМС</span><span style="color:#F1F5F9;">13 175 ₸</span></div>
               </div>
             </div>
           </div>
-          <div class="dash-tx-hd">
-            <span>Операции</span>
-            <span class="mockup-badge badge-blue">Live</span>
-          </div>
-          <div class="tx-feed" id="txFeed">
-            <div class="tx-row"><span>ТОО Стройком</span><span class="tx-amount-in">+320 000 ₸</span></div>
-            <div class="tx-row"><span>Аренда офиса</span><span class="tx-amount-out">−80 000 ₸</span></div>
-            <div class="tx-row"><span>Касса Дидар ИП</span><span class="tx-amount-in">+95 000 ₸</span></div>
-          </div>
+          <div style="text-align:center;margin-top:10px;font-size:10px;color:#7DD3FC;font-weight:600;">Нажмите чтобы открыть →</div>
         </div>
       </div>
     </div>
+    </a>
 
-    <!-- Phone frame -->
-    <div class="device-phone">
+    <!-- Phone frame — Deadlines & Reminders -->
+    <a href="https://alibekovakarakat5-png.github.io/esep/" target="_blank" style="text-decoration:none;display:block;">
+    <div class="device-phone" style="cursor:pointer;">
       <div class="phone-notch-bar"><div class="phone-notch"></div></div>
       <div class="phone-screen">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
-          <span style="font-size:14px;font-weight:800;color:#F1F5F9;">Esep</span>
+          <span style="font-size:14px;font-weight:800;color:#F1F5F9;">Мои дедлайны</span>
           <span class="live-dot"></span>
         </div>
-        <!-- 910 form card -->
-        <div class="phone-card">
-          <div style="font-size:10px;color:#64748B;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;">910 Декларация</div>
-          <span class="mockup-badge badge-blue" style="font-size:10px;">I п/г 2026</span>
-          <hr class="mockup-divider"/>
-          <div class="phone-row"><span>Доход</span><span id="form910income">1 240 000 ₸</span></div>
-          <div class="phone-row"><span>Налог 3%</span><span style="color:#FCD34D;" id="form910tax">49 600 ₸</span></div>
-          <div class="phone-row"><span>ИПН</span><span>24 800 ₸</span></div>
-          <div class="phone-row"><span>Соцналог</span><span>24 800 ₸</span></div>
-          <hr class="mockup-divider"/>
-          <div style="font-size:10px;color:#64748B;">Срок: 15 августа 2026</div>
-        </div>
-        <!-- Invoice -->
-        <div class="phone-card" style="margin-top:8px;">
-          <div style="font-size:10px;color:#64748B;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;">Счёт № 042</div>
+        <!-- Deadline urgent -->
+        <div class="phone-card phone-card-warn">
           <div style="display:flex;justify-content:space-between;align-items:center;">
-            <span style="font-size:11px;color:#F1F5F9;font-weight:700;">ТОО АстанаТрейд</span>
-            <span class="mockup-badge badge-green" style="font-size:10px;">Оплачен</span>
+            <div>
+              <div style="font-size:12px;font-weight:700;color:#FCD34D;">Соцплатежи за себя</div>
+              <div style="font-size:10px;color:#94A3B8;margin-top:2px;">ОПВ + СО + ВОСМС = 21 675 ₸</div>
+            </div>
+            <div style="background:rgba(239,68,68,.2);color:#F87171;font-size:11px;font-weight:700;padding:3px 8px;border-radius:8px;" id="deadlineBadge">3 дня</div>
           </div>
-          <div style="font-size:16px;color:#7DD3FC;font-weight:800;margin-top:6px;">540 000 ₸</div>
         </div>
-        <!-- Deadline warning -->
-        <div class="phone-card phone-card-warn" style="margin-top:8px;">
-          <div style="font-size:11px;color:#FCD34D;font-weight:700;">Дедлайн через</div>
-          <div style="font-size:20px;color:#F1F5F9;font-weight:800;margin-top:2px;" id="deadlineBadge">3 дня</div>
-          <div style="font-size:10px;color:#94A3B8;margin-top:2px;">Соцплатежи · до 25 марта</div>
+        <!-- Deadline normal -->
+        <div class="phone-card" style="margin-top:8px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div style="font-size:12px;font-weight:600;color:#F1F5F9;">Форма 910.00</div>
+              <div style="font-size:10px;color:#94A3B8;margin-top:2px;">I полугодие 2026</div>
+            </div>
+            <div style="background:rgba(34,197,94,.2);color:#4ADE80;font-size:11px;font-weight:700;padding:3px 8px;border-radius:8px;">137 дней</div>
+          </div>
+        </div>
+        <!-- BIN result -->
+        <div class="phone-card" style="margin-top:8px;">
+          <div style="font-size:10px;color:#64748B;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;">Поиск по БИН</div>
+          <div style="font-size:12px;font-weight:700;color:#F1F5F9;">ТОО АстанаТрейд</div>
+          <div style="font-size:10px;color:#94A3B8;margin-top:3px;">БИН: 230440012345</div>
+          <div style="font-size:10px;color:#7DD3FC;margin-top:3px;">Директор: Ахметов А.С.</div>
+        </div>
+        <!-- Guide CTA -->
+        <div style="margin-top:10px;background:rgba(14,165,233,.15);border:1px solid rgba(14,165,233,.3);border-radius:10px;padding:10px;text-align:center;">
+          <div style="font-size:11px;color:#7DD3FC;font-weight:600;">Какие отчёты мне сдавать? →</div>
         </div>
       </div>
     </div>
+    </a>
 
   </div>
 </section>
@@ -812,53 +928,76 @@
   <div class="container">
     <div class="section-head reveal">
       <h2 class="section-title">Для кого Esep</h2>
-      <p class="section-sub">Четыре сценария — один инструмент, разные интерфейсы</p>
+      <p class="section-sub">Три сценария — один инструмент</p>
     </div>
-    <div class="whom-grid">
+    <div class="whom-grid" style="grid-template-columns:repeat(3,1fr);">
       <div class="whom-card reveal">
         <div class="whom-icon" style="background:rgba(14,165,233,.1);">👤</div>
-        <div class="whom-title">ИП на упрощёнке / ЕСП</div>
-        <div class="whom-desc">Хочу сам вести учёт без бухгалтера и не ошибиться с налогами</div>
+        <div class="whom-title">ИП</div>
+        <div class="whom-desc">Только открыли ИП или давно работаете — Esep покажет что и когда сдавать</div>
         <div class="whom-features">
-          <div class="whom-feat">Быстро записать доход за 10 секунд</div>
-          <div class="whom-feat">Точная сумма ОПВ + СО + ВОСМС каждый месяц</div>
-          <div class="whom-feat">Счёт клиенту в PDF — 2 минуты</div>
-          <div class="whom-feat">Контроль лимита 24 038 МРП</div>
+          <div class="whom-feat">Гайд: какие отчёты, какие налоги, какие дедлайны</div>
+          <div class="whom-feat">Калькулятор 910, ЕСП, самозанятый, ОУР</div>
+          <div class="whom-feat">Соцплатежи: точная сумма каждый месяц</div>
+          <div class="whom-feat">Напоминания: не пропустите срок</div>
+          <div class="whom-feat">PDF-счета клиентам за 2 минуты</div>
         </div>
+        <a href="https://alibekovakarakat5-png.github.io/esep/" target="_blank" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:16px;font-size:13px;">Попробовать бесплатно</a>
       </div>
       <div class="whom-card reveal">
-        <div class="whom-icon" style="background:rgba(123,47,190,.1);">💼</div>
-        <div class="whom-title">Бухгалтер на удалёнке</div>
-        <div class="whom-desc">Веду 8–15 ИП и ТОО, теряюсь в дедлайнах и документах</div>
+        <div class="whom-icon" style="background:rgba(34,197,94,.1);">🏢</div>
+        <div class="whom-title">ТОО</div>
+        <div class="whom-desc">КПН, НДС, зарплаты сотрудников, отчёты в статистику — всё в одном месте</div>
         <div class="whom-features">
-          <div class="whom-feat">Все клиенты — один экран с цветами статусов</div>
-          <div class="whom-feat">Единый календарь 910 / ОПВ / 200.00 / 700.00</div>
-          <div class="whom-feat">Расчёт ФОТ: зарплата → ОПВ, ИПН, СО, ВОСМС</div>
-          <div class="whom-feat">Чеклист документов по каждому периоду</div>
+          <div class="whom-feat">Калькулятор КПН 20% + НДС 12% + дивиденды</div>
+          <div class="whom-feat">Зарплатный калькулятор: ОПВ, ИПН, СО, ВОСМС</div>
+          <div class="whom-feat">Отчёты: 100.00, 300.00, 200.00 + статистика</div>
+          <div class="whom-feat">Поиск контрагентов по БИН</div>
         </div>
+        <a href="https://alibekovakarakat5-png.github.io/esep/" target="_blank" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:16px;font-size:13px;">Попробовать бесплатно</a>
       </div>
-      <div class="whom-card reveal">
-        <div class="whom-icon" style="background:rgba(34,197,94,.1);">🏭</div>
-        <div class="whom-title">ТОО на общеустановленном</div>
-        <div class="whom-desc">Нужен расчёт КПН, НДС, дивидендов и зарплат сотрудников</div>
+      <div class="whom-card reveal" style="border-color:var(--gold);">
+        <div class="whom-icon" style="background:rgba(245,158,11,.1);">💼</div>
+        <div class="whom-title">Бухгалтер</div>
+        <div class="whom-desc">Ведёте 5–15 клиентов (ИП/ТОО) и теряетесь в дедлайнах?</div>
         <div class="whom-features">
-          <div class="whom-feat">Калькулятор КПН 20% + НДС 12%</div>
-          <div class="whom-feat">Расчёт дивидендов (ИПН 5%)</div>
-          <div class="whom-feat">Зарплатный калькулятор (ОПВ, ИПН, СО)</div>
-          <div class="whom-feat">Поиск по БИН: компания, директор</div>
+          <div class="whom-feat">Все клиенты — один экран со статусами</div>
+          <div class="whom-feat">Единый календарь: 910, ОПВ, 200.00, 700.00</div>
+          <div class="whom-feat">Расчёт ФОТ: зарплата → все отчисления</div>
+          <div class="whom-feat">Чеклист документов по каждому клиенту</div>
         </div>
+        <a href="https://wa.me/77075884651?text=%D0%A5%D0%BE%D1%87%D1%83+%D1%82%D0%B0%D1%80%D0%B8%D1%84+%D0%91%D1%83%D1%85%D0%B3%D0%B0%D0%BB%D1%82%D0%B5%D1%80" target="_blank" class="btn btn-gold" style="width:100%;justify-content:center;margin-top:16px;font-size:13px;">Подключить за 4 900 ₸</a>
       </div>
-      <div class="whom-card reveal">
-        <div class="whom-icon" style="background:rgba(245,158,11,.1);">🏢</div>
-        <div class="whom-title">Компания / B2B</div>
-        <div class="whom-desc">Хотим инструмент для наших клиентов или интеграцию в свою систему</div>
-        <div class="whom-features">
-          <div class="whom-feat">White-label версия под вашим брендом</div>
-          <div class="whom-feat">API для интеграции с вашим CRM / ERP</div>
-          <div class="whom-feat">Выделенный сервер и поддержка</div>
-          <div class="whom-feat">Индивидуальные доработки</div>
-        </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── How it works ────────────────────────────────────────────────────────────── -->
+<section class="section" id="how">
+  <div class="container">
+    <div class="section-head reveal" style="text-align:center;">
+      <h2 class="section-title">Как это работает</h2>
+      <p class="section-sub" style="margin:0 auto;">Три шага — и вы знаете все свои обязательства</p>
+    </div>
+    <div class="steps-grid reveal">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-title">Введите БИН</div>
+        <div class="step-desc">Узнайте название компании, директора, вид деятельности и тип (ИП или ТОО)</div>
       </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-title">Выберите режим</div>
+        <div class="step-desc">Упрощёнка, ЕСП, самозанятый или ОУР — Esep покажет все обязательные отчёты и дедлайны</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-title">Esep напоминает</div>
+        <div class="step-desc">ОПВ до 25-го, 910 форма до 15 августа — вы не пропустите ни один дедлайн</div>
+      </div>
+    </div>
+    <div class="reveal" style="text-align:center;margin-top:32px;">
+      <a href="https://alibekovakarakat5-png.github.io/esep/" target="_blank" class="btn btn-primary">Попробовать прямо сейчас →</a>
     </div>
   </div>
 </section>
@@ -1654,11 +1793,12 @@
   setInterval(updateCountdown, 60000);
 
   // ── Live hero animations ──────────────────────────────────────────────────
-  // 1. Income counter ticking up
+  // Calculator mockup — income ticks up, tax recalculates
   let income = 1240000;
   const incomeEl  = document.getElementById('incomeCounter');
   const limitEl   = document.getElementById('limitPct');
   const limitBar  = document.getElementById('limitBar');
+  const taxEl     = document.getElementById('form910tax');
   const HALF_LIMIT = 103_964_350; // 24038 MRP * 4325
 
   function fmtMoney(n) {
@@ -1666,41 +1806,12 @@
   }
   setInterval(() => {
     income += Math.floor(Math.random() * 45000 + 5000);
-    const pct = Math.min(99, Math.round(income / HALF_LIMIT * 100));
+    const pct = Math.min(99, (income / HALF_LIMIT * 100).toFixed(1));
     if (incomeEl) incomeEl.textContent = fmtMoney(income);
     if (limitEl)  limitEl.textContent  = pct + '%';
     if (limitBar) limitBar.style.width = pct + '%';
-    // Also update 910 form card
-    const f910i = document.getElementById('form910income');
-    const f910t = document.getElementById('form910tax');
-    if (f910i) f910i.textContent = fmtMoney(income);
-    if (f910t) f910t.textContent = fmtMoney(Math.round(income * 0.03));
+    if (taxEl)    taxEl.textContent    = fmtMoney(Math.round(income * 0.03));
   }, 3200);
-
-  // 2. Live transaction feed
-  const txItems = [
-    { name: 'ТОО Стройком',     amount: +320000 },
-    { name: 'Аренда офиса',     amount: -80000  },
-    { name: 'Касса Дидар ИП',   amount: +95000  },
-    { name: 'Зарплата сотр.',   amount: -150000 },
-    { name: 'ИП Ахметов',       amount: +210000 },
-    { name: 'Интернет Beeline',  amount: -9500   },
-    { name: 'ТОО АстанаТрейд',  amount: +540000 },
-    { name: 'Коммунальные',     amount: -32000  },
-    { name: 'Оплата от Айгерим',amount: +75000  },
-  ];
-  let txIdx = 3;
-  const feedEl = document.getElementById('txFeed');
-  setInterval(() => {
-    if (!feedEl) return;
-    const tx = txItems[txIdx % txItems.length]; txIdx++;
-    const row = document.createElement('div');
-    row.className = 'tx-row';
-    const isIn = tx.amount > 0;
-    row.innerHTML = `<span>${tx.name}</span><span class="${isIn ? 'tx-amount-in' : 'tx-amount-out'}">${isIn ? '+' : '−'}${Math.abs(tx.amount).toLocaleString('ru-RU')} ₸</span>`;
-    feedEl.insertBefore(row, feedEl.firstChild);
-    if (feedEl.children.length > 4) feedEl.removeChild(feedEl.lastChild);
-  }, 2800);
 
   // 3. Deadline badge countdown
   const deadlineEl = document.getElementById('deadlineBadge');
@@ -1713,18 +1824,17 @@
 
   // ── Feature popup showcase ────────────────────────────────────────────────
   const popupFeatures = [
-    { icon:'💰', bg:'rgba(34,197,94,.1)',   title:'Быстрый учёт доходов',     desc:'«+ Доход» — введите сумму — готово. Всего 2 тапа с главного экрана, никаких лишних полей.',                                  tag:'Для ИП' },
-    { icon:'📄', bg:'rgba(14,165,233,.1)',  title:'PDF-счета клиентам',        desc:'Создайте счёт с позициями, отправьте PDF клиенту. Статус: черновик → отправлен → оплачен.',                                    tag:'Для ИП' },
-    { icon:'🧮', bg:'rgba(239,68,68,.1)',   title:'5 налоговых калькуляторов', desc:'ИП (910, ЕСП, Патент, ОУР), ТОО (КПН + НДС + дивиденды), зарплатный (ОПВ, ИПН, СО, ВОСМС). Ставки 2026.',                   tag:'Все' },
-    { icon:'⏰', bg:'rgba(245,158,11,.1)',  title:'Дедлайны без штрафов',      desc:'Напоминания за 30 / 7 / 3 дня до ОПВ, СО, ВОСМС и 910 формы. Никогда не пропустите срок.',                                   tag:'Для ИП' },
-    { icon:'🔍', bg:'rgba(34,197,94,.1)',   title:'Поиск по БИН',             desc:'Введите 12-значный БИН — получите название компании, директора, адрес, вид деятельности. Данные из stat.gov.kz.',              tag:'Все' },
-    { icon:'💼', bg:'rgba(123,47,190,.1)',  title:'Калькулятор ТОО',          desc:'Доход → КПН 20% → НДС 12% → дивиденды 5%. Сотрудники: соцналог 9.5%. Итого: эффективная ставка и чистая прибыль.',           tag:'Для ТОО' },
-    { icon:'💰', bg:'rgba(56,189,248,.1)',  title:'Зарплатный калькулятор',   desc:'Введите оклад — получите: ОПВ 10%, ИПН 10%, ВОСМС 2%, СО 5%, ОПВР 3.5%. На руки и расходы работодателя.',                   tag:'Все' },
-    { icon:'🗂️', bg:'rgba(14,165,233,.1)', title:'Command Center',             desc:'Все клиенты одним экраном: Срочно / В работе / Готово. Фильтры по статусу и долгам.',                                       tag:'Бухгалтер' },
-    { icon:'📅', bg:'rgba(245,158,11,.1)',  title:'Единый дедлайн-календарь',  desc:'Все сроки всех клиентов — в одном месте. Авто-генерация по режиму: ОПВ, 910, 200.00, 700.00.',                               tag:'Бухгалтер' },
-    { icon:'👤', bg:'rgba(239,68,68,.1)',   title:'Поиск ЛПР (лицо принимающее решения)',  desc:'Найдите компанию по названию — получите БИН, директора. Сохраните контакт для дальнейшей работы.',             tag:'Бухгалтер' },
-    { icon:'🏦', bg:'rgba(34,197,94,.1)',   title:'Импорт из банка',           desc:'Загрузите выписку из Kaspi / Halyk — операции автоматически распознаются и добавляются в учёт.',                             tag:'Для ИП' },
-    { icon:'📊', bg:'rgba(56,189,248,.1)',  title:'Аналитика за 12 месяцев',   desc:'График доходов и расходов, контроль лимита упрощёнки (24 038 МРП) и прибыль по каждому периоду.',                            tag:'Для ИП' },
+    { icon:'📖', bg:'rgba(14,165,233,.1)',  title:'Гайд по налоговому режиму', desc:'Не знаете что сдавать? Введите БИН, выберите режим — Esep покажет все отчёты, налоги и дедлайны простым языком.',            tag:'Новичкам' },
+    { icon:'🧮', bg:'rgba(239,68,68,.1)',   title:'Калькулятор налогов',       desc:'Введите доход — мы посчитаем: сколько налогов, сколько соцплатежей, когда платить. Работает для ИП и ТОО.',                   tag:'Все' },
+    { icon:'⏰', bg:'rgba(245,158,11,.1)',  title:'Напоминания о дедлайнах',   desc:'Напомним за 7 дней: ОПВ до 25-го, 910 до 15 августа, 100.00 до 31 марта. Забыли — штраф от 64 875 ₸.',                      tag:'Все' },
+    { icon:'💰', bg:'rgba(34,197,94,.1)',   title:'Учёт доходов',              desc:'Нажмите "+ Доход", введите сумму — готово. Без Excel, без блокнота.',                                                        tag:'Для ИП' },
+    { icon:'📄', bg:'rgba(14,165,233,.1)',  title:'PDF-счета клиентам',        desc:'Создайте счёт, отправьте PDF. Статус: черновик → отправлен → оплачен. Всё на одном экране.',                                  tag:'Для ИП' },
+    { icon:'🔍', bg:'rgba(34,197,94,.1)',   title:'Поиск по БИН',              desc:'Введите БИН — получите название компании, директора, адрес. Проверяйте контрагентов за 3 секунды.',                           tag:'Все' },
+    { icon:'💼', bg:'rgba(123,47,190,.1)',  title:'Калькулятор ТОО',           desc:'КПН 20%, НДС 12%, дивиденды 5%. Зарплаты сотрудников со всеми отчислениями.',                                                tag:'Для ТОО' },
+    { icon:'🗂️', bg:'rgba(14,165,233,.1)', title:'Панель бухгалтера',          desc:'Все клиенты на одном экране: кто задерживает документы, у кого скоро срок, кто не оплатил.',                                  tag:'Бухгалтер' },
+    { icon:'📅', bg:'rgba(245,158,11,.1)',  title:'Календарь дедлайнов',       desc:'Все сроки всех клиентов в одном месте. ОПВ, 910, 200.00, 700.00 — цветовая индикация.',                                      tag:'Бухгалтер' },
+    { icon:'🏦', bg:'rgba(34,197,94,.1)',   title:'Импорт из банка',           desc:'Загрузите выписку Kaspi/Halyk — доходы добавятся автоматически.',                                                            tag:'Для ИП' },
+    { icon:'📊', bg:'rgba(56,189,248,.1)',  title:'Аналитика и контроль',      desc:'Графики за 12 месяцев, контроль лимита упрощёнки. Видно прибыль и динамику.',                                                tag:'Для ИП' },
   ];
 
   const popupArea   = document.getElementById('popupArea');
