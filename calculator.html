@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Налоговый калькулятор ИП — Казахстан 2026 | Esep.kz</title>
+  <meta name="description" content="Бесплатный налоговый калькулятор для ИП Казахстана. Рассчитайте ИПН, СН, ОПВ, ОПВР, СО, ВОСМС по актуальным ставкам 2026 года. МРП 4 325 ₸, МЗП 85 000 ₸.">
+  <meta name="keywords" content="налог ИП 910 казахстан, налоговый калькулятор казахстан 2026, упрощёнка расчёт, ОПВ ВОСМС СО 2026, МРП 2026">
+  <link rel="canonical" href="https://esepkz.vercel.app/calculator">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Налоговый калькулятор ИП Казахстан 2026">
+  <meta property="og:description" content="Считайте налоги за 10 секунд. МРП 4 325 ₸, 910 форма 3%, соцплатежи по ставкам 2026.">
+  <meta property="og:url" content="https://esepkz.vercel.app/calculator">
+  <meta property="og:image" content="https://esepkz.vercel.app/og-image.png">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #2563eb;
+      --primary-bg: #eff6ff;
+      --income: #16a34a;
+      --expense: #dc2626;
+      --warning: #d97706;
+      --text: #1e293b;
+      --sub: #64748b;
+      --border: #e2e8f0;
+      --card: #ffffff;
+      --bg: #f8faff;
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+    /* ── Header ── */
+    header { background: #fff; border-bottom: 1px solid var(--border); padding: 14px 24px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 10; }
+    header a { color: var(--primary); text-decoration: none; font-size: 14px; white-space: nowrap; }
+    header .logo { font-weight: 800; font-size: 18px; color: var(--text); letter-spacing: -0.5px; }
+    header .badge { background: var(--primary-bg); color: var(--primary); font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 20px; }
+    header .spacer { flex: 1; }
+
+    /* ── Layout ── */
+    .wrap { max-width: 960px; margin: 0 auto; padding: 32px 20px 80px; }
+    .page-title { font-size: 26px; font-weight: 800; margin-bottom: 4px; }
+    .page-sub { color: var(--sub); font-size: 14px; margin-bottom: 28px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 680px) { .grid { grid-template-columns: 1fr; } }
+
+    /* ── Card ── */
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; }
+    .card-title { font-size: 13px; font-weight: 700; color: var(--sub); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; }
+
+    /* ── Regime tabs ── */
+    .regime-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+    .regime-tab { padding: 8px 16px; border-radius: 20px; border: 1.5px solid var(--border); background: #fff; font-size: 13px; font-weight: 600; color: var(--sub); cursor: pointer; transition: all .15s; }
+    .regime-tab.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .regime-tab:hover:not(.active) { border-color: var(--primary); color: var(--primary); }
+
+    /* ── Input ── */
+    .input-group { margin-bottom: 16px; }
+    .input-label { font-size: 13px; font-weight: 600; color: var(--sub); margin-bottom: 6px; display: block; }
+    .input-wrap { position: relative; }
+    .input-wrap input { width: 100%; padding: 10px 44px 10px 14px; border: 1.5px solid var(--border); border-radius: 10px; font-size: 16px; font-weight: 600; color: var(--text); background: #fff; outline: none; transition: border-color .15s; }
+    .input-wrap input:focus { border-color: var(--primary); }
+    .input-wrap .suffix { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--sub); font-size: 14px; font-weight: 600; pointer-events: none; }
+    .toggle-row { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .toggle-label { font-size: 13px; color: var(--text); }
+    .toggle { width: 44px; height: 24px; background: var(--border); border-radius: 12px; cursor: pointer; position: relative; transition: background .15s; flex-shrink: 0; }
+    .toggle.on { background: var(--primary); }
+    .toggle::after { content: ''; position: absolute; width: 18px; height: 18px; background: #fff; border-radius: 50%; top: 3px; left: 3px; transition: left .15s; box-shadow: 0 1px 3px rgba(0,0,0,.2); }
+    .toggle.on::after { left: 23px; }
+
+    /* ── Result rows ── */
+    .result-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+    .result-row:last-child { border-bottom: none; }
+    .result-row .label { color: var(--text); }
+    .result-row .label .hint { font-size: 11px; color: var(--sub); margin-top: 1px; }
+    .result-row .val { font-weight: 700; font-size: 15px; }
+    .result-row.total { padding-top: 14px; margin-top: 4px; border-top: 2px solid var(--border); border-bottom: none; }
+    .result-row.total .label { font-weight: 700; font-size: 15px; }
+    .result-row.total .val { font-size: 18px; color: var(--primary); }
+    .red { color: var(--expense); }
+    .green { color: var(--income); }
+    .orange { color: var(--warning); }
+
+    /* ── Limit bar ── */
+    .limit-bar-wrap { margin-top: 16px; }
+    .limit-bar-label { font-size: 12px; color: var(--sub); margin-bottom: 6px; display: flex; justify-content: space-between; }
+    .limit-bar-track { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+    .limit-bar-fill { height: 100%; border-radius: 4px; background: var(--primary); transition: width .4s; }
+    .limit-bar-fill.warn { background: var(--warning); }
+    .limit-bar-fill.over { background: var(--expense); }
+
+    /* ── Info box ── */
+    .info-box { background: var(--primary-bg); border: 1px solid #bfdbfe; border-radius: 10px; padding: 12px 14px; font-size: 13px; color: #1e40af; margin-top: 16px; line-height: 1.6; }
+    .info-box .ref { font-size: 11px; color: var(--sub); margin-top: 4px; }
+
+    /* ── CTA ── */
+    .cta-block { background: var(--primary); border-radius: 16px; padding: 24px; color: #fff; text-align: center; margin-top: 24px; }
+    .cta-block h3 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+    .cta-block p { font-size: 13px; opacity: .85; margin-bottom: 16px; }
+    .cta-btn { display: inline-block; background: #fff; color: var(--primary); font-weight: 700; font-size: 14px; padding: 10px 24px; border-radius: 10px; text-decoration: none; margin: 4px; }
+    .cta-btn.outline { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.5); }
+
+    /* ── Footer note ── */
+    .footer-note { margin-top: 32px; text-align: center; font-size: 12px; color: var(--sub); line-height: 1.8; }
+    .footer-note a { color: var(--primary); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<header>
+  <span class="logo">Esep</span>
+  <span class="badge">2026</span>
+  <span class="spacer"></span>
+  <a href="/">← На главную</a>
+</header>
+
+<div class="wrap">
+  <h1 class="page-title">Налоговый калькулятор ИП</h1>
+  <p class="page-sub">Казахстан · Актуальные ставки 2026 · МРП 4 325 ₸ · МЗП 85 000 ₸</p>
+
+  <!-- Режим -->
+  <div class="regime-tabs">
+    <button class="regime-tab active" onclick="setRegime('910')">Упрощёнка (910)</button>
+    <button class="regime-tab" onclick="setRegime('esp')">ЕСП</button>
+    <button class="regime-tab" onclick="setRegime('self')">Самозанятый</button>
+    <button class="regime-tab" onclick="setRegime('our')">ОУР</button>
+  </div>
+
+  <div class="grid">
+
+    <!-- ── Левая колонка: ввод ── -->
+    <div>
+      <div class="card" id="inputCard">
+        <div class="card-title">Ваши данные</div>
+
+        <div class="input-group" id="incomeGroup">
+          <label class="input-label" id="incomeLabel">Доход за полугодие</label>
+          <div class="input-wrap">
+            <input type="number" id="income" value="1250000" min="0" oninput="calc()">
+            <span class="suffix">₸</span>
+          </div>
+        </div>
+
+        <div class="toggle-row" id="birthToggleRow">
+          <div class="toggle" id="birthToggle" onclick="toggleBirth()"></div>
+          <span class="toggle-label">Родился до 1975 года (без ОПВР)</span>
+        </div>
+
+        <div class="toggle-row" id="discountRow">
+          <div class="toggle" id="discountToggle" onclick="toggleDiscount()"></div>
+          <span class="toggle-label">Региональная скидка 2%</span>
+        </div>
+
+        <div class="input-group" id="cityGroup" style="display:none">
+          <label class="input-label">Место работы</label>
+          <div style="display:flex;gap:8px">
+            <button class="regime-tab active" id="cityBtn" onclick="setCity(true)" style="flex:1;padding:8px">Город</button>
+            <button class="regime-tab" id="ruralBtn" onclick="setCity(false)" style="flex:1;padding:8px">Село</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Соцплатежи "за себя" -->
+      <div class="card" style="margin-top:16px" id="socialCard">
+        <div class="card-title">Соцплатежи «за себя» / мес</div>
+        <div class="result-row">
+          <div class="label">ОПВ (пенсия)<div class="hint">10% от МЗП · ст.25 Закона о пенс.</div></div>
+          <span class="val" id="s_opv">8 500 ₸</span>
+        </div>
+        <div class="result-row" id="opvrRow">
+          <div class="label">ОПВР (пенсия раб.)<div class="hint">3,5% от МЗП · ст.26-1 Закона о пенс.</div></div>
+          <span class="val" id="s_opvr">2 975 ₸</span>
+        </div>
+        <div class="result-row">
+          <div class="label">СО (соцстрахование)<div class="hint">5% от МЗП · ст.15 Закона о СО</div></div>
+          <span class="val" id="s_so">4 250 ₸</span>
+        </div>
+        <div class="result-row">
+          <div class="label">ВОСМС (медстрахование)<div class="hint">5% × 1.4 МЗП · ст.28 Закона о ОСМС</div></div>
+          <span class="val" id="s_vosms">5 950 ₸</span>
+        </div>
+        <div class="result-row total">
+          <span class="label">Итого / месяц</span>
+          <span class="val" id="s_total">21 675 ₸</span>
+        </div>
+        <div class="result-row" style="border-bottom:none;padding-bottom:0">
+          <span class="label" style="color:var(--sub);font-size:13px">За полгода</span>
+          <span class="val" style="color:var(--sub)" id="s_half">130 050 ₸</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Правая колонка: результат ── -->
+    <div>
+      <div class="card" id="resultCard">
+        <div class="card-title" id="resultTitle">Налог 910 за полугодие</div>
+        <div id="resultContent"></div>
+      </div>
+
+      <div class="cta-block" style="margin-top:16px">
+        <h3>Ведите учёт автоматически</h3>
+        <p>Esep считает налоги и соцплатежи сам — вам остаётся только проверить</p>
+        <a href="https://wa.me/77075884651?text=%D0%A5%D0%BE%D1%87%D1%83+%D0%BF%D0%BE%D0%BF%D1%80%D0%BE%D0%B1%D0%BE%D0%B2%D0%B0%D1%82%D1%8C+Esep" target="_blank" class="cta-btn">Попробовать бесплатно</a>
+        <a href="/#download" class="cta-btn outline">Скачать APK</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-note">
+    Расчёты соответствуют <strong>НК РК 2026</strong>, Закону о пенсионном обеспечении, Закону о ОСМС и Закону о социальном страховании.<br>
+    МРП = 4 325 ₸ (Закон о бюджете № 239-VIII от 08.12.2025) · МЗП = 85 000 ₸<br>
+    Результаты носят справочный характер. Актуальные данные: <a href="https://kgd.gov.kz" target="_blank">kgd.gov.kz</a>
+  </div>
+</div>
+
+<script>
+  // ── Константы 2026 ───────────────────────────────────────────────────────
+  const MRP  = 4325;
+  const MZP  = 85000;
+
+  // Форма 910 (ст. 683 НК РК)
+  const IPN_RATE = 0.015;
+  const SN_RATE  = 0.015;
+  const LIMIT_HALF = MRP * 24038; // ~103.9M ₸
+
+  // Соцплатежи "за себя"
+  const OPV_RATE   = 0.10;
+  const OPVR_RATE  = 0.035; // 2026
+  const SO_RATE    = 0.05;
+  const VOSMS_RATE = 0.05;
+  const VOSMS_BASE = MZP * 1.4;
+
+  // ЕСП
+  const ESP_YEAR_LIMIT = MRP * 1175;
+  const ESP_CITY  = MRP;
+  const ESP_RURAL = MRP * 0.5;
+
+  // Самозанятый
+  const SELF_RATE       = 0.04;
+  const SELF_YEAR_LIMIT = MRP * 3528;
+
+  // ── Состояние ────────────────────────────────────────────────────────────
+  let regime     = '910';
+  let birth75    = false;
+  let discount   = false;
+  let isCity     = true;
+
+  function setRegime(r) {
+    regime = r;
+    document.querySelectorAll('.regime-tab').forEach((el, i) => {
+      const map = ['910','esp','self','our'];
+      el.classList.toggle('active', map[i] === r);
+    });
+    updateUI();
+    calc();
+  }
+
+  function toggleBirth() {
+    birth75 = !birth75;
+    document.getElementById('birthToggle').classList.toggle('on', birth75);
+    calc();
+  }
+
+  function toggleDiscount() {
+    discount = !discount;
+    document.getElementById('discountToggle').classList.toggle('on', discount);
+    calc();
+  }
+
+  function setCity(v) {
+    isCity = v;
+    document.getElementById('cityBtn').classList.toggle('active', v);
+    document.getElementById('ruralBtn').classList.toggle('active', !v);
+    calc();
+  }
+
+  function updateUI() {
+    const is910  = regime === '910';
+    const isEsp  = regime === 'esp';
+    const isSelf = regime === 'self';
+    const isOur  = regime === 'our';
+
+    document.getElementById('birthToggleRow').style.display = (is910 || isOur) ? '' : 'none';
+    document.getElementById('discountRow').style.display    = is910 ? '' : 'none';
+    document.getElementById('cityGroup').style.display      = isEsp ? '' : 'none';
+
+    const incomeLabel = document.getElementById('incomeLabel');
+    if (is910)       incomeLabel.textContent = 'Доход за полугодие';
+    else if (isEsp)  incomeLabel.textContent = 'Доход за год';
+    else if (isSelf) incomeLabel.textContent = 'Доход за год';
+    else             incomeLabel.textContent = 'Чистый доход за год';
+  }
+
+  // ── Форматирование ───────────────────────────────────────────────────────
+  const fmt = (n) => Math.round(n).toLocaleString('ru-RU') + ' ₸';
+  const pct = (n) => (n * 100).toFixed(1) + '%';
+
+  // ── Соцплатежи "за себя" ─────────────────────────────────────────────────
+  function calcSocial() {
+    const opv   = MZP * OPV_RATE;
+    const opvr  = birth75 ? 0 : MZP * OPVR_RATE;
+    const so    = MZP * SO_RATE;
+    const vosms = VOSMS_BASE * VOSMS_RATE;
+    const total = opv + opvr + so + vosms;
+
+    document.getElementById('s_opv').textContent   = fmt(opv);
+    document.getElementById('s_opvr').textContent  = fmt(opvr);
+    document.getElementById('s_so').textContent    = fmt(so);
+    document.getElementById('s_vosms').textContent = fmt(vosms);
+    document.getElementById('s_total').textContent = fmt(total);
+    document.getElementById('s_half').textContent  = fmt(total * 6);
+    document.getElementById('opvrRow').style.opacity = birth75 ? '0.4' : '1';
+
+    return total;
+  }
+
+  // ── Основной расчёт ──────────────────────────────────────────────────────
+  function calc() {
+    const income = parseFloat(document.getElementById('income').value) || 0;
+    const social = calcSocial();
+    const el     = document.getElementById('resultContent');
+    const title  = document.getElementById('resultTitle');
+
+    if (regime === '910') {
+      const disc     = discount ? 0.02 : 0;
+      const effIpn   = Math.max(0, IPN_RATE - disc / 2);
+      const effSn    = Math.max(0, SN_RATE  - disc / 2);
+      const ipn      = income * effIpn;
+      const sn       = income * effSn;
+      const tax      = ipn + sn;
+      const halfSoc  = social * 6;
+      const total    = tax + halfSoc;
+      const eff      = income > 0 ? total / income : 0;
+      const limitPct = LIMIT_HALF > 0 ? income / LIMIT_HALF : 0;
+      const barClass = limitPct > 1 ? 'over' : limitPct > 0.8 ? 'warn' : '';
+
+      title.textContent = 'Налог 910 за полугодие';
+      el.innerHTML = `
+        <div class="result-row"><div class="label">ИПН ${pct(effIpn)}<div class="hint">ст.683 НК РК</div></div><span class="val red">${fmt(ipn)}</span></div>
+        <div class="result-row"><div class="label">СН ${pct(effSn)}</div><span class="val red">${fmt(sn)}</span></div>
+        <div class="result-row"><div class="label">Соцплатежи × 6 мес</div><span class="val orange">${fmt(halfSoc)}</span></div>
+        <div class="result-row total"><span class="label">Итого за полугодие</span><span class="val">${fmt(total)}</span></div>
+        <div class="result-row" style="border-bottom:none;padding-bottom:0"><span class="label" style="color:var(--sub);font-size:13px">Эффективная ставка</span><span class="val" style="color:var(--sub)">${pct(eff)}</span></div>
+        <div class="limit-bar-wrap">
+          <div class="limit-bar-label"><span>Лимит упрощёнки</span><span>${fmt(income)} / ${fmt(LIMIT_HALF)}</span></div>
+          <div class="limit-bar-track"><div class="limit-bar-fill ${barClass}" style="width:${Math.min(limitPct*100,100)}%"></div></div>
+          ${limitPct > 1 ? '<div style="color:var(--expense);font-size:12px;margin-top:6px">⚠ Превышен лимит! Рекомендуется перейти на ОУР.</div>' : ''}
+          ${limitPct > 0.8 && limitPct <= 1 ? '<div style="color:var(--warning);font-size:12px;margin-top:6px">⚡ Осталось менее 20% от лимита</div>' : ''}
+        </div>
+        <div class="info-box">
+          Декларация: подать до ${income > 0 ? (new Date().getMonth() < 7 ? '15 августа' : '15 февраля') : '15 августа'}, оплатить до ${income > 0 ? (new Date().getMonth() < 7 ? '25 августа' : '25 февраля') : '25 августа'}.
+          <div class="ref">Ст. 683–688 НК РК</div>
+        </div>`;
+
+    } else if (regime === 'esp') {
+      const monthly  = isCity ? ESP_CITY : ESP_RURAL;
+      const yearly   = monthly * 12;
+      const overLimit = income > ESP_YEAR_LIMIT;
+      title.textContent = 'ЕСП';
+      el.innerHTML = `
+        <div class="result-row"><div class="label">Платёж/мес<div class="hint">${isCity ? 'Город: 1 МРП' : 'Село: 0.5 МРП'}</div></div><span class="val">${fmt(monthly)}</span></div>
+        <div class="result-row total"><span class="label">Итого в год</span><span class="val">${fmt(yearly)}</span></div>
+        <div class="result-row" style="border-bottom:none;padding-bottom:0"><span class="label" style="color:var(--sub);font-size:13px">Лимит дохода в год</span><span class="val" style="color:var(--sub)">${fmt(ESP_YEAR_LIMIT)}</span></div>
+        ${overLimit ? '<div class="info-box" style="background:#fef2f2;border-color:#fecaca;color:#991b1b">⚠ Превышен лимит ЕСП. Необходимо перейти на другой режим.<div class="ref">Ст. 776 НК РК</div></div>' : '<div class="info-box">ЕСП включает ОПВ, ВОСМС, ИПН, СО — всё в одном платеже.<div class="ref">Ст. 775–779 НК РК</div></div>'}`;
+
+    } else if (regime === 'self') {
+      const tax  = income * SELF_RATE;
+      const soc  = social * 12;
+      const total = tax + soc;
+      const overLimit = income > SELF_YEAR_LIMIT;
+      title.textContent = 'Налог самозанятого (год)';
+      el.innerHTML = `
+        <div class="result-row"><div class="label">Налог 4% от дохода<div class="hint">Ст. 774-1 НК РК</div></div><span class="val red">${fmt(tax)}</span></div>
+        <div class="result-row"><div class="label">Соцплатежи × 12 мес</div><span class="val orange">${fmt(soc)}</span></div>
+        <div class="result-row total"><span class="label">Итого в год</span><span class="val">${fmt(total)}</span></div>
+        <div class="result-row" style="border-bottom:none;padding-bottom:0"><span class="label" style="color:var(--sub);font-size:13px">Лимит дохода</span><span class="val" style="color:var(--sub)">${fmt(SELF_YEAR_LIMIT)}</span></div>
+        ${overLimit ? '<div class="info-box" style="background:#fef2f2;border-color:#fecaca;color:#991b1b">⚠ Превышен лимит. Рекомендуется перейти на упрощёнку.</div>' : ''}`;
+
+    } else {
+      const ipn  = income * 0.10;
+      const soc  = social * 12;
+      const total = ipn + soc;
+      title.textContent = 'ОУР — налог за год';
+      el.innerHTML = `
+        <div class="result-row"><div class="label">ИПН 10% от чистого дохода<div class="hint">Ст. 317 НК РК</div></div><span class="val red">${fmt(ipn)}</span></div>
+        <div class="result-row"><div class="label">Соцплатежи × 12 мес</div><span class="val orange">${fmt(soc)}</span></div>
+        <div class="result-row total"><span class="label">Итого в год</span><span class="val">${fmt(total)}</span></div>
+        <div class="info-box">При обороте более ${fmt(MRP * 20000)} необходима постановка на учёт по НДС (12%).<div class="ref">Ст. 367–368 НК РК</div></div>`;
+    }
+  }
+
+  // ── Инициализация ────────────────────────────────────────────────────────
+  updateUI();
+  calc();
+</script>
+
+</body>
+</html>
