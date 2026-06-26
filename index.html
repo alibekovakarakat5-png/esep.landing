@@ -2010,8 +2010,9 @@
   }
 
   // ── B2B form: создаёт лид в Connect CRM + открывает WhatsApp с предзаполненным текстом.
-  // Лид появляется в твоём Connect dashboard на /app/leads с тегом source=esep-landing.
-  const CONNECT_LEADS_URL = 'https://connect.esepkz.com/leads/esep';
+  // Заявка уходит на наш сервер: пишется в единую базу лидов + мгновенное
+  // уведомление в Telegram. Публичный эндпоинт, без секретов в браузере.
+  const LEAD_API_URL = 'https://api.esepkz.com/api/lead';
 
   async function submitForm(e) {
     e.preventDefault();
@@ -2022,20 +2023,16 @@
     const interest= document.getElementById('f-interest').value;
     const comment = document.getElementById('f-comment').value.trim();
 
-    // 1) Создаём лида в Connect (фоново, не блокируем UX). Карточка появится в твоём дашборде.
-    fetch(CONNECT_LEADS_URL, {
+    // 1) Надёжно сохраняем заявку на сервере (keepalive — долетит даже при
+    //    переходе в WhatsApp). Уведомление владельцу уйдёт в Telegram.
+    fetch(LEAD_API_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
+      keepalive: true,
       body: JSON.stringify({
-        name: name || 'Без имени',
-        company: company || null,
-        phone: phone.replace(/\D+/g, ''),
-        whatsapp: phone.replace(/\D+/g, ''),
-        email: email || null,
-        notes: [`Esep · ${interest}`, comment].filter(Boolean).join(' · '),
+        name, company, phone, email, interest, comment,
         source: 'esep-landing',
         sourceUrl: window.location.href,
-        status: 'new',
       }),
     }).catch(() => {}); // не блокируем UX при ошибке
 
