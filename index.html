@@ -1540,12 +1540,7 @@
   <div class="container">
     <div class="section-head reveal">
       <h2 class="section-title">Стартовые цены — только сейчас</h2>
-      <p class="section-sub">Подключитесь сегодня и сохраните цену навсегда. Через 60 дней цены вырастут.</p>
-    </div>
-    <div class="reveal" style="text-align:center;margin-bottom:24px;">
-      <div class="price-hurry" style="max-width:480px;margin:0 auto;justify-content:center;font-size:14px;">
-        <span>До повышения цен осталось: <strong class="price-timer" id="priceCountdown">--д --ч --м</strong></span>
-      </div>
+      <p class="section-sub">Простые тарифы для ИП, ТОО и бухгалтеров. Подключитесь сегодня — цена сохранится.</p>
     </div>
     <div class="price-grid reveal">
       <!-- Free -->
@@ -2023,11 +2018,8 @@
 </section>
 
 <!-- ── CTA Banner ─────────────────────────────────────────────────────────────── -->
-<section style="background:linear-gradient(135deg,#DC2626 0%,#B91C1C 50%,#991B1B 100%);padding:72px 0;">
+<section style="background:linear-gradient(135deg,#0F172A 0%,#1E3A5F 50%,#0F172A 100%);padding:72px 0;">
   <div class="container" style="text-align:center;">
-    <div class="reveal" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);padding:6px 16px;border-radius:20px;font-size:13px;color:rgba(255,255,255,.9);font-weight:600;margin-bottom:20px;">
-      Стартовые цены действуют ещё <strong id="ctaDays" style="color:#fff;">-- дней</strong>
-    </div>
     <h2 class="reveal" style="font-size:clamp(24px,4vw,36px);font-weight:800;color:white;margin-bottom:16px;">
       Подключитесь сейчас — цена останется навсегда
     </h2>
@@ -2192,33 +2184,7 @@
     document.body.classList.remove('has-promo');
   }
 
-  // ── Countdown timer (60 days from launch: 2026-03-20)
-  const PROMO_END = new Date('2026-05-19T23:59:59+06:00').getTime();
-  function updateCountdown() {
-    const now = Date.now();
-    const diff = Math.max(0, PROMO_END - now);
-    const days  = Math.floor(diff / 86400000);
-    const hours = Math.floor((diff % 86400000) / 3600000);
-    const mins  = Math.floor((diff % 3600000) / 60000);
-
-    // Promo bar
-    const cdD = document.getElementById('cdDays');
-    const cdH = document.getElementById('cdHours');
-    const cdM = document.getElementById('cdMins');
-    if (cdD) cdD.textContent = String(days).padStart(2,'0') + 'д';
-    if (cdH) cdH.textContent = String(hours).padStart(2,'0') + 'ч';
-    if (cdM) cdM.textContent = String(mins).padStart(2,'0') + 'м';
-
-    // Pricing section
-    const pc = document.getElementById('priceCountdown');
-    if (pc) pc.textContent = `${days}д ${hours}ч ${mins}м`;
-
-    // CTA banner
-    const ctaD = document.getElementById('ctaDays');
-    if (ctaD) ctaD.textContent = days + ' ' + (days === 1 ? 'день' : days < 5 ? 'дня' : 'дней');
-  }
-  updateCountdown();
-  setInterval(updateCountdown, 60000);
+  // Таймер обратного отсчёта убран (бизнес-стиль — без urgency-счётчиков).
 
   // ── Hero live calculator ─────────────────────────────────────────────────
   const MZP = 85000;
