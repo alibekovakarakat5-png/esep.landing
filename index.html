@@ -13,6 +13,7 @@
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:url" content="https://esepkz.com" />
+  <link rel="canonical" href="https://esepkz.com/" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Esep — Учёт для ИП, ТОО и бухгалтеров Казахстана" />
   <meta name="twitter:description" content="5 калькуляторов, поиск по БИН, импорт банка. Проще 1С, умнее Excel." />
@@ -854,7 +855,7 @@
     </ul>
     <div class="nav-cta">
       <a href="https://app.esepkz.com" class="nav-login">Войти</a>
-      <a target="_blank" href="https://wa.me/77059914789?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21+%D0%A5%D0%BE%D1%87%D1%83+%D0%BD%D0%B0%D1%87%D0%B0%D1%82%D1%8C+%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D1%82%D1%8C+%D1%81+Esep" class="btn btn-primary" style="padding:9px 20px;font-size:14px;">Начать бесплатно</a>
+      <a target="_blank" href="https://app.esepkz.com" class="btn btn-primary" style="padding:9px 20px;font-size:14px;">Начать бесплатно</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Меню">
       <span></span><span></span><span></span>
@@ -870,7 +871,7 @@
   <a href="/partneram.html" style="color:var(--income);font-weight:700;">→ Партнёрам (бухгалтерам)</a>
   <a href="#faq">FAQ</a>
   <a href="https://app.esepkz.com">Войти</a>
-  <a href="https://wa.me/77059914789?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21+%D0%A5%D0%BE%D1%87%D1%83+%D0%BD%D0%B0%D1%87%D0%B0%D1%82%D1%8C+%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D1%82%D1%8C+%D1%81+Esep" style="color:var(--primary);font-weight:700;">→ Начать бесплатно</a>
+  <a href="https://app.esepkz.com" style="color:var(--primary);font-weight:700;">→ Начать бесплатно</a>
   <a href="https://t.me/EsepKZ_bot" target="_blank" style="color:var(--gold);font-weight:700;">→ Telegram-бот</a>
 </div>
 
@@ -954,7 +955,6 @@
       <span class="trust-logo">📋 Форма 910</span>
       <span class="trust-logo">📋 Форма 200.00</span>
       <span class="trust-logo">📋 Форма 700.00</span>
-      <span class="trust-logo">💰 ЕСП</span>
       <span class="trust-logo">📑 ЭСФ</span>
     </div>
   </div>
@@ -1421,7 +1421,7 @@
           <span style="background:#f1f5f9;color:#64748b;padding:2px 10px;border-radius:20px;font-size:12px">Дайджест</span>
         </div>
         <h3 style="font-size:16px;font-weight:700;margin-bottom:8px;color:var(--dark);line-height:1.4">Режим самозанятых с 2026: технический разбор</h3>
-        <p style="font-size:13px;color:#64748b;margin-bottom:16px;line-height:1.6">Ст. 774-1 НК РК, ставка 4%, лимит 3 528 МРП. Кто подпадает, как переходить и какие риски.</p>
+        <p style="font-size:13px;color:#64748b;margin-bottom:16px;line-height:1.6">Ст. 774-1 НК РК, ставка 4%, лимит 3 600 МРП. Кто подпадает, как переходить и какие риски.</p>
         <div style="display:flex;align-items:center;justify-content:space-between">
           <span style="font-size:12px;color:#9ca3af">Февраль 2026</span>
           <a href="/blog-samozanyatye-2026.html" style="font-size:13px;font-weight:600;color:var(--primary);text-decoration:none">Читать &rarr;</a>
@@ -1481,13 +1481,13 @@
     grid.innerHTML = arts.map((a) => {
       const tags = (a.tags || []).slice(0, 2).map(t => `<span class="badge-tag">${t}</span>`).join('');
       const date = a.published_at ? new Date(a.published_at).toLocaleDateString('ru-RU', {month:'long',year:'numeric'}) : '';
-      return `<div class="art-card" onclick="location.href='/blog/${a.slug}'">
+      return `<div class="art-card" onclick="location.href='/blog-${a.slug}.html'">
         <div style="display:flex;gap:6px;flex-wrap:wrap">${audienceBadge(a.audience)}${tags}</div>
         <h3>${a.title}</h3>
         <p>${a.summary || ''}</p>
         <div class="art-meta">
           <span class="art-date">${date}</span>
-          <a class="art-link" href="/blog/${a.slug}" onclick="event.stopPropagation()">Читать →</a>
+          <a class="art-link" href="/blog-${a.slug}.html" onclick="event.stopPropagation()">Читать →</a>
         </div>
       </div>`;
     }).join('');
@@ -1540,7 +1540,7 @@
   <div class="container">
     <div class="section-head reveal">
       <h2 class="section-title">Стартовые цены — только сейчас</h2>
-      <p class="section-sub">Простые тарифы для ИП, ТОО и бухгалтеров. Подключитесь сегодня — цена сохранится.</p>
+      <p class="section-sub">Простые тарифы для ИП, ТОО и бухгалтеров. Подключитесь сегодня — цена сохранится. <strong style="color:var(--income);">7 дней бесплатно, без карты.</strong></p>
     </div>
     <div class="price-grid reveal">
       <!-- Free -->
@@ -1574,10 +1574,10 @@
           <div class="price-feat"><span class="ok">✓</span> Дедлайны с напоминаниями</div>
           <div class="price-feat"><span class="ok">✓</span> Счета, акты, ЭСФ</div>
         </div>
-        <a href="https://wa.me/77059914789?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21+%D0%A5%D0%BE%D1%87%D1%83+%D1%82%D0%B0%D1%80%D0%B8%D1%84+%D0%98%D0%9F+7900" target="_blank" class="btn btn-primary" style="width:100%;justify-content:center;">Подключить — 7 900 ₸/мес</a>
+        <a href="https://app.esepkz.com" target="_blank" class="btn btn-primary" style="width:100%;justify-content:center;">Подключить — 7 900 ₸/мес</a>
         <div class="price-guarantee" style="margin-top:6px">
           <span style="display:flex;align-items:center;justify-content:center;gap:4px;font-size:12px;color:var(--muted)">
-            Оформление и оплата — через WhatsApp, поможем подключить
+            7 дней бесплатно, без карты · <a href="https://wa.me/77059914789?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21+%D0%A5%D0%BE%D1%87%D1%83+%D1%82%D0%B0%D1%80%D0%B8%D1%84+%D0%98%D0%9F+7900" target="_blank" style="color:var(--muted);text-decoration:underline;">или спросить в WhatsApp</a>
           </span>
         </div>
       </div>
@@ -1596,10 +1596,10 @@
           <div class="price-feat"><span class="ok">✓</span> Безлимит БИН + калькулятор ТОО</div>
           <div class="price-feat"><span class="ok">✓</span> Приоритетная поддержка</div>
         </div>
-        <a href="https://wa.me/77059914789?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21+%D0%A5%D0%BE%D1%87%D1%83+%D1%82%D0%B0%D1%80%D0%B8%D1%84+%D0%91%D1%83%D1%85%D0%B3%D0%B0%D0%BB%D1%82%D0%B5%D1%80+14900" target="_blank" class="btn btn-gold" style="width:100%;justify-content:center;">Подключить — 14 900 ₸/мес</a>
+        <a href="https://app.esepkz.com" target="_blank" class="btn btn-gold" style="width:100%;justify-content:center;">Подключить — 14 900 ₸/мес</a>
         <div class="price-guarantee" style="margin-top:6px">
           <span style="display:flex;align-items:center;justify-content:center;gap:4px;font-size:12px;color:var(--muted)">
-            Оформление и оплата — через WhatsApp, поможем подключить
+            7 дней бесплатно, без карты · <a href="https://wa.me/77059914789?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21+%D0%A5%D0%BE%D1%87%D1%83+%D1%82%D0%B0%D1%80%D0%B8%D1%84+%D0%91%D1%83%D1%85%D0%B3%D0%B0%D0%BB%D1%82%D0%B5%D1%80+14900" target="_blank" style="color:var(--muted);text-decoration:underline;">или спросить в WhatsApp</a>
           </span>
         </div>
       </div>
@@ -2004,7 +2004,7 @@
           Какие калькуляторы есть в Esep?
           <span class="arrow">▼</span>
         </button>
-        <div class="faq-a">5 калькуляторов: (1) ИП — упрощёнка 910, ЕСП, Патент, ОУР; (2) ТОО — КПН 20%, НДС 16%, дивиденды 5%; (3) Зарплатный — ОПВ, ИПН, СО, ВОСМС, ОПВР, ООСМС; (4) Соцплатежи за ИП; (5) Налоговый прогноз. Все ставки актуальны на 2026 год (МРП 4 325 ₸).</div>
+        <div class="faq-a">5 калькуляторов: (1) ИП — упрощёнка 910, ОУР, самозанятые (режимы ЕСП и патент отменены с 2026, оставлены для справки); (2) ТОО — КПН 20%, НДС 16%, дивиденды 5%; (3) Зарплатный — ОПВ, ИПН, СО, ВОСМС, ОПВР, ООСМС; (4) Соцплатежи за ИП; (5) Налоговый прогноз. Все ставки актуальны на 2026 год (МРП 4 325 ₸).</div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" onclick="toggleFaq(this)">

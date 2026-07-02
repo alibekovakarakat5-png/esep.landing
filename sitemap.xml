@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Главная -->
+  <url>
+    <loc>https://esepkz.com/</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Существующие блоги -->
+  <url>
+    <loc>https://esepkz.com/blog-nalogi-ip-2026</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://esepkz.com/blog-opvr-2026</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://esepkz.com/blog-samozanyatye-2026</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Калькулятор -->
+  <url>
+    <loc>https://esepkz.com/calculator</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Юридические -->
+  <url>
+    <loc>https://esepkz.com/privacy</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://esepkz.com/terms</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <!--
+    Раздел /nk2026 (курс «НК 2026 за полчаса») временно скрыт.
+    Каждая страница имеет meta robots noindex. Откроем когда:
+      1) Фарида подтвердит факты по всем 13 темам
+      2) Допилим раздел курсов в Esep app (/learn)
+      3) Запустим рекламную кампанию
+  -->
+</urlset>

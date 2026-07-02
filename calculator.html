@@ -6,12 +6,12 @@
   <title>Налоговый калькулятор ИП — Казахстан 2026 | Esep.kz</title>
   <meta name="description" content="Бесплатный налоговый калькулятор для ИП Казахстана. Рассчитайте ИПН, СН, ОПВ, ОПВР, СО, ВОСМС по актуальным ставкам 2026 года. МРП 4 325 ₸, МЗП 85 000 ₸.">
   <meta name="keywords" content="налог ИП 910 казахстан, налоговый калькулятор казахстан 2026, упрощёнка расчёт, ОПВ ВОСМС СО 2026, МРП 2026">
-  <link rel="canonical" href="https://esepkz.vercel.app/calculator">
+  <link rel="canonical" href="https://esepkz.com/calculator.html">
   <!-- Open Graph -->
   <meta property="og:title" content="Налоговый калькулятор ИП Казахстан 2026">
   <meta property="og:description" content="Считайте налоги за 10 секунд. МРП 4 325 ₸, 910 форма 4%, соцплатежи по ставкам 2026.">
-  <meta property="og:url" content="https://esepkz.vercel.app/calculator">
-  <meta property="og:image" content="https://esepkz.vercel.app/og-image.png">
+  <meta property="og:url" content="https://esepkz.com/calculator.html">
+  <meta property="og:image" content="https://esepkz.com/og-image.png">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -119,7 +119,7 @@
   <!-- Режим -->
   <div class="regime-tabs">
     <button class="regime-tab active" onclick="setRegime('910')">Упрощёнка (910)</button>
-    <button class="regime-tab" onclick="setRegime('esp')">ЕСП</button>
+    <button class="regime-tab" onclick="setRegime('esp')">ЕСП (отменён с 2026)</button>
     <button class="regime-tab" onclick="setRegime('self')">Самозанятый</button>
     <button class="regime-tab" onclick="setRegime('our')">ОУР</button>
   </div>
@@ -199,8 +199,8 @@
       <div class="cta-block" style="margin-top:16px">
         <h3>Ведите учёт автоматически</h3>
         <p>Esep считает налоги и соцплатежи сам — вам остаётся только проверить</p>
-        <a href="https://wa.me/77075884651?text=%D0%A5%D0%BE%D1%87%D1%83+%D0%BF%D0%BE%D0%BF%D1%80%D0%BE%D0%B1%D0%BE%D0%B2%D0%B0%D1%82%D1%8C+Esep" target="_blank" class="cta-btn">Попробовать бесплатно</a>
-        <a href="/#download" class="cta-btn outline">Скачать APK</a>
+        <a href="https://app.esepkz.com" target="_blank" class="cta-btn">Попробовать бесплатно — 7 дней</a>
+        <a href="https://app.esepkz.com" target="_blank" class="cta-btn outline">Открыть веб-приложение</a>
       </div>
     </div>
 
@@ -237,7 +237,7 @@
 
   // Самозанятый
   const SELF_RATE       = 0.04;
-  const SELF_YEAR_LIMIT = MRP * 3528;
+  const SELF_YEAR_LIMIT = MRP * 3600;
 
   // ── Состояние ────────────────────────────────────────────────────────────
   let regime     = '910';
@@ -356,8 +356,9 @@
       const monthly  = isCity ? ESP_CITY : ESP_RURAL;
       const yearly   = monthly * 12;
       const overLimit = income > ESP_YEAR_LIMIT;
-      title.textContent = 'ЕСП';
+      title.textContent = 'ЕСП (отменён с 2026)';
       el.innerHTML = `
+        <div class="info-box" style="background:#fef2f2;border-color:#fecaca;color:#991b1b;margin-top:0;margin-bottom:12px">⚠ Режим ЕСП отменён с 01.01.2026 (НК 214-VIII). Калькулятор оставлен для справки.</div>
         <div class="result-row"><div class="label">Платёж/мес<div class="hint">${isCity ? 'Город: 1 МРП' : 'Село: 0.5 МРП'}</div></div><span class="val">${fmt(monthly)}</span></div>
         <div class="result-row total"><span class="label">Итого в год</span><span class="val">${fmt(yearly)}</span></div>
         <div class="result-row" style="border-bottom:none;padding-bottom:0"><span class="label" style="color:var(--sub);font-size:13px">Лимит дохода в год</span><span class="val" style="color:var(--sub)">${fmt(ESP_YEAR_LIMIT)}</span></div>
@@ -385,7 +386,7 @@
         <div class="result-row"><div class="label">ИПН 10% от чистого дохода<div class="hint">Ст. 317 НК РК</div></div><span class="val red">${fmt(ipn)}</span></div>
         <div class="result-row"><div class="label">Соцплатежи × 12 мес</div><span class="val orange">${fmt(soc)}</span></div>
         <div class="result-row total"><span class="label">Итого в год</span><span class="val">${fmt(total)}</span></div>
-        <div class="info-box">При обороте более ${fmt(MRP * 20000)} необходима постановка на учёт по НДС (12%).<div class="ref">Ст. 367–368 НК РК</div></div>`;
+        <div class="info-box">При обороте более ${fmt(MRP * 10000)} необходима постановка на учёт по НДС (16%).<div class="ref">НК РК 2026</div></div>`;
     }
   }
 
