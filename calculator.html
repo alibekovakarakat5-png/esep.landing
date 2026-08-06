@@ -42,7 +42,7 @@
 
     /* ── Шаги мастера ── */
     .step { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin-bottom: 16px; }
-    .step.hidden { display: none; }
+    .hidden { display: none; }
     .step.appear { animation: rise .25s ease-out; }
     @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
     .step-head { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 700; margin-bottom: 16px; }
@@ -58,6 +58,19 @@
     .mode-title { font-size: 15px; font-weight: 700; margin-bottom: 3px; }
     .mode-sub { font-size: 13px; color: var(--sub); line-height: 1.45; }
     .mode-note { font-size: 12px; color: var(--sub); margin-top: 12px; line-height: 1.5; }
+    .mode-help-link { display: block; width: 100%; text-align: center; margin-top: 12px; background: none; border: 1.5px dashed var(--border); border-radius: 12px; padding: 12px; font: inherit; font-size: 14px; font-weight: 600; color: var(--primary); cursor: pointer; }
+    .mode-help-link:hover { border-color: var(--primary); }
+    .helper-box { margin-top: 12px; border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; background: var(--bg); }
+    .helper-q { font-size: 14px; font-weight: 700; margin-bottom: 10px; }
+    .helper-answers { display: flex; gap: 8px; flex-wrap: wrap; }
+    .helper-btn { flex: 1; min-width: 140px; background: #fff; border: 1.5px solid var(--border); border-radius: 10px; padding: 10px 12px; font: inherit; font-size: 13px; font-weight: 600; color: var(--text); cursor: pointer; }
+    .helper-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .helper-btn.picked { border-color: var(--primary); background: var(--primary-bg); color: var(--primary); }
+    .helper-reco { margin-top: 12px; font-size: 13px; line-height: 1.6; }
+    .helper-actions { display: grid; gap: 8px; margin-top: 10px; }
+    .helper-actions .secondary-btn { margin-bottom: 0; }
+    .helper-wa { font-size: 12px; color: var(--sub); margin-top: 12px; text-align: center; }
+    .helper-wa a { color: var(--primary); font-weight: 600; text-decoration: none; }
 
     /* ── Шаг 2: доход ── */
     .input-label { font-size: 13px; font-weight: 600; color: var(--sub); margin-bottom: 6px; display: block; }
@@ -156,6 +169,16 @@
       </button>
     </div>
     <div class="mode-note">Патент и ЕСП отменены с 01.01.2026 (НК 214-VIII) — на их месте режим самозанятых.</div>
+    <button class="mode-help-link" id="modeHelpLink">Не знаю свой режим — помогите выбрать</button>
+    <div class="helper-box hidden" id="regimeHelper">
+      <div class="helper-q">Вы зарегистрированы как ИП?</div>
+      <div class="helper-answers">
+        <button class="helper-btn" id="helperYesIp">Да, я ИП</button>
+        <button class="helper-btn" id="helperNoIp">Нет / не оформлялся</button>
+      </div>
+      <div class="helper-reco hidden" id="helperReco"></div>
+      <div class="helper-wa">Сомневаетесь? <a target="_blank" href="https://wa.me/77059914789?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21+%D0%9D%D0%B5+%D0%B7%D0%BD%D0%B0%D1%8E+%D1%81%D0%B2%D0%BE%D0%B9+%D0%BD%D0%B0%D0%BB%D0%BE%D0%B3%D0%BE%D0%B2%D1%8B%D0%B9+%D1%80%D0%B5%D0%B6%D0%B8%D0%BC%2C+%D0%BF%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5">Напишите в WhatsApp</a> — подскажу за минуту</div>
+    </div>
   </section>
 
   <!-- ── Шаг 2: доход ── -->
@@ -261,23 +284,66 @@
   function hide(el) { el.classList.add('hidden'); }
 
   // ── Шаг 1: выбор режима ──────────────────────────────────────────────────
+  function selectRegime(r) {
+    regime = r;
+    document.querySelectorAll('.mode-card').forEach((c) =>
+      c.classList.toggle('active', c.dataset.regime === r));
+    $('step1').classList.add('done');
+
+    const meta = REGIME_META[r];
+    $('incomeLabel').textContent = meta.incomeLabel;
+    $('birthToggleRow').style.display = '';
+    $('discountRow').style.display = r === '910' ? '' : 'none';
+
+    show($('step2'));
+    if (calculated && currentIncome() > 0) render(); else { hide($('step3')); hide($('step4')); }
+    $('step2').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    $('income').focus({ preventScroll: true });
+  }
   document.querySelectorAll('.mode-card').forEach((card) => {
-    card.addEventListener('click', () => {
-      regime = card.dataset.regime;
-      document.querySelectorAll('.mode-card').forEach((c) =>
-        c.classList.toggle('active', c === card));
-      $('step1').classList.add('done');
+    card.addEventListener('click', () => selectRegime(card.dataset.regime));
+  });
 
-      const meta = REGIME_META[regime];
-      $('incomeLabel').textContent = meta.incomeLabel;
-      $('birthToggleRow').style.display = '';
-      $('discountRow').style.display = regime === '910' ? '' : 'none';
+  // ── Помощник «Не знаю свой режим» ────────────────────────────────────────
+  $('modeHelpLink').addEventListener('click', () => {
+    $('regimeHelper').classList.toggle('hidden');
+  });
 
-      show($('step2'));
-      if (calculated && currentIncome() > 0) render(); else { hide($('step3')); hide($('step4')); }
-      $('step2').scrollIntoView({ behavior: 'smooth', block: 'center' });
-      $('income').focus({ preventScroll: true });
-    });
+  function helperRecommend(html, wire) {
+    const reco = $('helperReco');
+    reco.classList.remove('hidden');
+    reco.innerHTML = html;
+    wire();
+  }
+
+  $('helperNoIp').addEventListener('click', () => {
+    $('helperNoIp').classList.add('picked');
+    $('helperYesIp').classList.remove('picked');
+    const lim = EsepTax.selfEmployedLimit(R);
+    helperRecommend(
+      `<div class="info-box">Вам подходит режим <b>самозанятых</b>: 4% с каждого дохода, ` +
+      `без регистрации ИП и деклараций. Лимит — ${fmt(lim.monthlyTenge)} в месяц. ` +
+      `Если зарабатываете больше — стоит открыть ИП на упрощёнке.</div>` +
+      `<div class="helper-actions"><button class="primary-btn" id="helperGoSelf">Посчитать как самозанятый</button></div>`,
+      () => $('helperGoSelf').addEventListener('click', () => selectRegime('self')),
+    );
+  });
+
+  $('helperYesIp').addEventListener('click', () => {
+    $('helperYesIp').classList.add('picked');
+    $('helperNoIp').classList.remove('picked');
+    helperRecommend(
+      `<div class="info-box">Если вы не выбирали режим специально — почти наверняка у вас ` +
+      `<b>упрощёнка (форма 910)</b>: её используют большинство ИП малого бизнеса. ` +
+      `ОУР обычно у тех, кто вычитает расходы и работает с бухгалтером.</div>` +
+      `<div class="helper-actions">` +
+      `<button class="primary-btn" id="helperGo910">Посчитать по упрощёнке</button>` +
+      `<button class="secondary-btn" id="helperGoOur">У меня ОУР — считать по нему</button></div>`,
+      () => {
+        $('helperGo910').addEventListener('click', () => selectRegime('910'));
+        $('helperGoOur').addEventListener('click', () => selectRegime('our'));
+      },
+    );
   });
 
   // ── Шаг 2: доход и опции ─────────────────────────────────────────────────
